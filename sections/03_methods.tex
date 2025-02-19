@@ -1,0 +1,33 @@
+\section{Method}
+
+\subsection{Data}
+
+Data were retrieved for 168,347 emergency ischaemic stroke admissions to hospitals in England and Wales for six calendar years, 2016–2021 (inclusive), obtained from the Sentinel Stroke National Audit Programme (SSNAP). SSNAP prospectively collects clinical data from 100\% of acute hospitals in England and Wales, with case ascertainment estimated at $>$90\% when compared with administrative coding data. Data fields were provided for the hyperacute phase of the stroke pathway, up to and including the primary outcome of disability at inpatient discharge, recorded using the modified Rankin Scale (mRS) score. The data includes 118 acute stroke hospitals (each with at least 250 stroke admissions and which delivered thrombolysis to at least 10 patients in the study period), for patients that arrived at the hospital by ambulance after their stroke onset and did not go on to receive thrombectomy (rates of thrombectomy recorded in SSNAP increased from 0.7\% to 2.0\% of all stroke during this period).
+
+\subsection{Feature selection}
+
+The full dataset contained 57 features that described patient demographic and clinical characteristics, the acute stroke pathway, use/time of thrombolysis, and the stroke team they attended). We applied the feature selection results from Pearn \textit{et al}. \cite{pearn_are_2024}, which used modelling and discussions with clinicians to identify the influential features to include in the model.
+
+Code and full results for feature selection may be found at \url{https://github.com/samuel-book/feature_selection_thrombolysis_outcome_ml_paper}
+
+\subsection{Machine learning models}
+
+We trained a set of six independent XGBoost models \cite{chen_xgboost_2016} to predict the likelihood of an ischaemic stroke patient attaining any given mRS threshold at discharge. For each mRS threshold, we refer to being at or lower than that threshold as a \textit{'same or better}' or '\textit{good outcome}'. We used 5-fold cross validation to test the accuracy of the model, and to test reproducibility of patterns detected (in 5-fold cross validation the data is split into 5 different 80:20 train/test splits with each patient being in one, and only one, test set). The results from the model fitted on the first k-fold split was used to investigate the relationships between feature values and their contribution to the predictions.
+
+Code, and full results, for the machine learning work may be found at \url{https://github.com/samuel-book/thrombolysis_clinical_trials_ml_paper}
+
+\subsection{Model accuracy}
+
+For each of the six machine learning models, we report the model accuracy measured using the 5-fold model: percent correct and receiver operating characteristic area under curve (ROC-AUC).
+
+\subsection{SHapley Additive exPlanation (SHAP) values}
+
+SHAP values explain the contribution (as the change in log-odds) that each feature value has on the model’s prediction of achieving a good outcome at discharge \cite{lundberg_unified_2017}. SHAP values expressed as log-odds are additive (and so are preferred to probabilities, which are not additive, when examining the contribution of individual features to the final prediction). A SHAP model for each of the six machine learning models was created (one for each threshold of mRS). To illustrate how to interpret the SHAP value in our case, the target feature with a value of 1 represents a good outcome (being at or below any given mRS threshold), and a value 0 represents a worse outcome (being above any given mRS threshold). A positive SHAP value represents that the corresponding feature value increases the likelihood for that patient having a good outcome, and a negative SHAP value represents that the corresponding feature value reduces the likelihood for that patient having a good outcome. SHAP values can be assessed \textit{locally} at patient level, and \textit{globally} at patient cohort level to understand general patterns of how discharge outcomes differ by each of the patient, pathway, and hospital characteristics.
+
+\subsection{Counterfactual treatment (what if patients had not received thrombolysis?)}
+
+We used counterfactuals for each patient who received thrombolysis, to assess the contribution that thrombolysis made on the likelihood of a good outcome at discharge. Limiting this analysis to the 6,897 patients that receive thrombolysis in the first k-fold test set, we created their counterfactual case by setting the feature \textit{onset to treatment time} to 9,999 minutes (the same value used to train the model, for patients who did not receive thrombolysis) to represent the patient not receiving treatment, and used the model to predict their counterfactual outcome.
+
+\subsubsection{The direct contribution of thrombolysis use to the shift in probability of a good outcome}
+
+Taking the difference between the predicted log odds for a good outcome (mRS 0-1) at discharge, contributed by the \textit{onset to thrombolysis time} feature, when the patient received thrombolysis, and not, gave the predicted shift in likelihood of a good outcome at discharge with thrombolysis for each patient who received thrombolysis. We modelled the decay in effect of thrombolysis by fitting a linear regression model to the benefit of thrombolysis (log odds shift in attaining a good outcome) with time from onset to treatment (excluding patients treated after 300 minutes). The model used the definition of mRS 0-1 as a good outcome to match the definition used in the meta analysis of clinical trials \cite{emberson_effect_2014}. The analysis was applied to three patient cohorts: (1) all ischaemic strokes (n = 6,897), (2) severe ischaemic strokes, NIHSS 11+ (n = 2,897), (3) mild-moderate ischaemic strokes, NIHSS 0-10 (n = 4,000).

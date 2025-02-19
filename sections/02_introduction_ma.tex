@@ -1,0 +1,33 @@
+\section{Introduction}
+
+% Include
+% 1) What is the problem?
+% 2) What do we know about low and varying use of thrombolysis
+% 3) What do we not know
+% 4) How are we addressing what we don't know
+
+% 1) What is the problem?
+
+Stroke remains one of the top three global causes of death and disability \cite{feigin_global_2021}. Despite reductions in age-standardised rates of stroke, ageing populations are driving an increase in the absolute number of strokes \cite{feigin_global_2021}. Across Europe, in 2017, stroke was estimated to cost healthcare systems \texteuro 27 billion, or 1.7\% of health expenditure \cite{luengo-fernandez_economic_2020}. The burden is increasing; it has been estimated that the number of stroke survivors aged 45 and over in the UK will more than double between 2015 and 2035 \cite{king_future_2020}.
+
+Thrombolysis with recombinant tissue plasminogen activator, can significantly reduce disability after ischaemic stroke, provided it is given in the first few hours after stroke onset \cite{emberson_effect_2014}. 
+
+Despite thrombolysis being of proven benefit in ischaemic stroke, use of thrombolysis varies significantly both between and within European countries \cite{aguiar_de_sousa_access_2019}. In England and Wales the Sentinel Stroke National Audit Programme (SSNAP) reported that in 2021/22, 20 years after the original European Medicines Agency licencing of alteplase for acute ischaemic stroke, thrombolysis rates varied from 1\% to 28\% of emergency stroke admissions between hospitals \cite{sentinel_national_stroke_audit_programme_ssnap_2022}, with a median rate of 10.4\% and an inter-quartile range of 8\%-13\%, against a 2019 NHS England long term plan that 20\% of patients with stroke should be receiving thrombolysis\cite{nhs_long_term_plan_2019}.
+
+% 2) What do we know about low and varying use of thrombolysis
+
+Studies have shown that reasons for low and varying thrombolysis rates are multi-factorial. Reasons include late presentation \cite{aguiar_de_sousa_access_2019}, lack of expertise \cite{aguiar_de_sousa_access_2019} or lack of clear protocols or training \cite{carter-jones_stroke_2011}, delayed access to specialists \cite{kamal_delays_2017}, and poor triage by ambulance or emergency department staff \cite{carter-jones_stroke_2011}. For many factors, the establishment of primary stroke centres has been suggested to improve the emergency care of patients with stroke and reduce barriers to thrombolysis \cite{carter-jones_stroke_2011}, with a centralised model of primary stroke centres leading to increased likelihood of thrombolysis \cite{lahr_proportion_2012, morris_impact_2014, hunter_impact_2013}. 
+
+In addition to organisational factors, clinicians can have varying attitudes to which patients are suitable candidates for thrombolysis. In a discrete choice experiment \cite{de_brun_factors_2018}, 138 clinicians considered hypothetical patient vignettes, and responded as to whether they would give the patients thrombolysis. The authors concluded that there was considerable heterogeneity among respondents in their thrombolysis decision-making. Areas of difference were around whether to give thrombolysis to mild strokes, to older patients beyond 3 hours from stroke onset, and when there was pre-existing disability. We have also found, from interviews, that some clinicians express a lack of faith in the clinical trials of thrombolysis and demonstrated a reluctance to expressed a lack of faith in the clinical trials and reluctance to thrombolyse due to perceived risks of the procedure \cite{jarvie_stroke_2024}.
+
+Based on national audit data from three years of emergency stroke admissions, we have previously built models of the emergency stroke pathway using clinical pathway simulation to examine the potential scale of the effect of changing two aspects of the stroke pathway performance (1. the in-hospital process speeds, and 2. the proportion of patients with a determined stroke onset time), and using machine learning to examine the effect of replicating clinical decision-making around thrombolysis from higher thrombolysing hospitals to lower thrombolysing hospitals \cite{allen_using_2022, allen_use_2022}. We showed that it would be credible to target an increase in average thrombolysis in England and Wales, from 11\% to 18\%, but that each hospital should have its own target, reflecting differences in local populations. We found that the largest increase in thrombolysis use would come from replicating thrombolysis decision-making practice from higher to lower thrombolysing hospitals.
+
+In order to further understand the variation around thrombolysis decision-making, we employed explainable machine learning to understand how patient characteristics and the hospital attended affect the odds of a patient receiving thrombolysis\cite{pearn_what_2023}. We found that the odds of receiving thrombolysis varied 13 fold between hospitals, with lower thombolysing hospitals especially more likely to avoid thrombolysis in non-ideal candidates such as patients with mild stroke, or with pre-stroke disability.
+
+% 3) What do we not know
+
+Qualitative research has identified that clinicians from stroke teams with low thrombolysis use are concerned about the risk:benefit profile of thrombolysis \cite{jarvie_stroke_2024}. Confidence in the benefit of thrombolysis was especially lower in Emergency Department clinicians (as opposed to specialist stroke consultants), and there was more concern around patients that were seen as marginal candidates for thrombolysis, such as mild stroke.
+
+There have been various observational studies which have provided further support for the effectiveness of thrombolysis \cite{wahlgren_thrombolysis_2007, wahlgren_thrombolysis_2008, manawadu_observational_2013, willeit_thrombolysis_2015}. None of these studies, however, were able to investigate the relationship between time-to-treatment and effectiveness compared to the clinical trial meta-analyses.
+
+With the collection of clinical data for all emergency stroke admissions in England and Wales, and with the power of new explainable machine learning techniques, our aim was to build a predictive model of stroke outcomes, perform a large scale analysis of the benefit of thrombolysis in practice, and to compare the relationship between time-to-treatment and effectiveness with clinical trial results.
