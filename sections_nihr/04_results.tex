@@ -27,7 +27,7 @@ Discharge disability (mRS) &  2.6 & 1.9 & 0 & 1 & 2 & 4 & 6\tabularnewline
 \normalsize
 \end{minipage}
 
-\subsection{Feature selection}
+\subsection{Feature selection and proposed causal model}
 
 Using the results from Pearn \textit{el at}. \cite{pearn_are_2024}, we selected 7 features as inputs for the model to predict a patient's likelihood of a good outcome at discharge:
 
@@ -40,6 +40,13 @@ Using the results from Pearn \textit{el at}. \cite{pearn_are_2024}, we selected 
     \item Atrial fibrillation diagnosis: Patient had a diagnosis of atrial fibrillation (either on arrival or diagnosed during admission)
     \item Precise onset known: Onset time recorded was recorded as being precise time (as opposed to a best estimate)
 \end{enumerate}
+
+\begin{figure}[!h]
+    \centering%\captionsetup{width=.8\linewidth}%
+      \includegraphics[width=0.80\linewidth]{./images/thrombolysis_dag.png}\\
+  \caption{A Directed Acyclic Graph ('DAG') showing the proposed causal relationships. These relationships were derived from feature selection; identifying key features that were predictive of thrombolysis use or outcome. Dashed lines show features affecting propensity to receive thrombolysis; solid lines show features predictive of outcome.}
+    \label{fig:single_waterfall_with_ivt}
+\end{figure}
 
 
 \subsection{Model accuracy}
