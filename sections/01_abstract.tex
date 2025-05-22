@@ -1,0 +1,26 @@
+
+%TC:ignore
+\section*{Abstract}
+
+\textit{Introduction}: This study examines the effect of thrombolysis on discharge outcomes for ischaemic stroke patients in England and Wales using data from the UK prospective national stroke registry.
+
+\textit{Patients and methods}: A total of 168,347 ischaemic stroke patients who attended one of 118 emergency stroke hospitals in England and Wales from 2016 to 2021 were extracted from the Sentinel Stroke National Audit Programme (SSNAP). We used explainable machine learning (XGBoost with SHAP) to examine the effect of patient characteristics, hospital attended, and use/time of thrombolysis on the odds of achieving a good outcome (being at or below any given modified Rankin Scale threshold). A linear regression model was fitted to the estimated effect of onset-to-treatment time on thrombolysis to permit comparison with clinical trial meta-analyses.
+
+\textit{Results}: Thrombolysis was found to be associated with a statistically significant improvement in the odds of having a good outcome using any mRS threshold. Regression analysis predicted a maximum 2.5-fold improvement in odds of achieving mRS 0-1, with a decline to no treatment effect at 5 hours 28 minutes post-onset.
+
+\textit{Discussion and Conclusion}: Our results confirm a beneficial effect of thrombolysis in a large prospective national stroke registry, and align closely with meta-analyses of clinical trials of thrombolysis both in terms of magnitude of effect and decline over time. This work also demonstrates the potential of applying explainable machine learning to observational data to extend understanding of stroke treatment outcomes for patient cohorts not included in the original clinical trials.
+
+\section*{Plain English Summary}
+
+\textbf{What is the problem?} Use of clot-busting treatment (`\textit{thrombolysis}') in stroke varies a great deal between hospitals.
+
+\textbf{What did we know?} We knew that the largest cause of this variation was from how willing doctors are to use thrombolysis. Some doctors are worried that use of this treatment in the real world won’t have the same benefit that was predicted by the clinical trials.
+
+\textbf{What did we not know?} We did not know what the effect of thrombolysis is in the real world across all types of patients where thrombolysis has been used. 
+
+\textbf{What did we do?} We used explainable machine learning to learn how much patients benefit from thrombolysis in real world use. Machine learning finds patterns in large sets of data and can predict outcomes of patients. \textit{Explainable} machine learning allows us to sees what affects outcomes. We were particularly interested here in how use of thrombolysis affects outcomes.
+
+\textbf{What did we find out?} We found out that thrombolysis was at least as effective in real world use as clinical trials predicted.
+
+
+%TC:endignore
