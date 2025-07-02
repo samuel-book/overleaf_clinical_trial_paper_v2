@@ -227,13 +227,16 @@ Figure \ref{fig:feature_selection} shows the mean ROCAUC for the 5 kfold model, 
 
 \textbf{Summary of findings}
 
-Model with all features
 The model performance with all 58 features is:
-* AUC: 0.818 (std across 5 kfolds: 0.001)
-* Accuracy: 0.440 (std across 5 kfolds: 0.002)
-* Accuracy within one: 0.760 (std across 5 kfolds: 0.002)
+
+\begin{itemize}
+    \item AUC: 0.818 (std across 5 kfolds: 0.001)
+    \item Accuracy: 0.440 (std across 5 kfolds: 0.002)
+    \item Accuracy within one: 0.760 (std across 5 kfolds: 0.002)
+\end{itemize}
 
 \textbf{Sequentially selecting features}
+
 Sequentially chose features up to 25 features. We saw that once 14 features we selected, the model choose a feature (infarction) that is the same value for all patients, hence no more information was being obtained beyond this point:
 Feature  1: prior\_disability, AUC: 0.687
 Feature  2: stroke\_severity, AUC: 0.770
@@ -455,9 +458,6 @@ To investigate the interaction between "stroke team" and "year" we created some 
   \caption{ROC AUC, and specificity and sensitivity plots for each of the mRS threshold levels to define a good outcome (for first kfold). All features as model inputs.}
 
 \end{figure}
-
-
-
 
 
 

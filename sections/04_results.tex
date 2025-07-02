@@ -53,21 +53,9 @@ Using the results from Pearn \textit{el at}. \cite{pearn_are_2024}, we selected 
 
 With 7 input features, overall accuracy ranged from 77.6\% to 89.7\% across the six models (standard deviation across the 5 k-folds ranged from 0.001 to 0.002). This represented between 95-98\% of the accuracy that is obtained with all the features as inputs. ROC-AUC ranged from 0.852 to 0.893 across the six models (standard deviation across the 5 k-folds ranged from 0.001 to 0.002). Results were reproducible across the 5 k-folds, so further analysis was performed on the first k-fold split.
 
-
-\subsection{Individual patient SHAP values}
-
-SHAP values were calculated for each feature for each instance as how each value affects the log odds of having a good outcome at discharge. Figure \ref{fig:single_waterfall_with_ivt} shows a waterfall plot that illustrates the contribution from each feature value on the prediction for whether this individual patient had a good outcome (mRS 0-1) at discharge. This example patient (received thrombolysis at 165 minutes, known precisely, with no prior disability, 72.5 years old, had a moderate stroke, and attended hospital number 103) has a predicted 0.479 log odds (equivalent to 62\% probability) of having a good outcome (mRS 0-1) at discharge. For this patient, the two most influential features (that both increased the likelihood of having a good outcome, mRS 0-1) were prior disability (mRS 0) and onset to thrombolysis time (165 minutes).
-
-\begin{figure}[!h]
-    \centering%\captionsetup{width=.8\linewidth}%
-      \includegraphics[width=0.95\linewidth]{./images/103_xgb_7_features_1fold_binary_waterfall_plot_patient16_with_IVT.png}\\
-  \caption{The waterfall plot for a single patient showing the influence of the nine most influential feature values (y-axis) on the predicted likelihood of having a good outcome (mRS 0-1) on discharge (x-axis). Features are ranked in order of importance (top being most influential), with the contribution from the 10th ranked feature onwards being represented as a single contribution (\textit{115 other features}). The features with name prefix \textit{"team\_"} refers to a stroke team, where the value 1 represents the attended team, and the value 0 represents a team not attended (which may also have a small effect in the model). Each machine learning model applies the same SHAP base value (E[f(X)]) to each patient, this can be interpreted as the most likely outcome given no other knowledge of the instance. The sum of the SHAP base value and the SHAP values for each input feature equates to the overall predicted likelihood of having a good outcome on discharge, shown at the top of the plot (f(x)).}
-    \label{fig:single_waterfall_with_ivt}
-\end{figure}
-
 \subsection{Global SHAP patterns}
 
-For each patient in the test set we extracted SHAP values for each feature with its corresponding feature value. Figure \ref{fig:global_shap_mrs1} shows the relationship between feature values and the odds of a patient having a good outcome (mRS 0-1) at discharge (a positive SHAP value contributes to an increased likelihood, and a negative SHAP value contributes to a reduced likelihood). We see that low prior disability, lower stroke severity, younger age, receiving thrombolysis (and receiving it sooner after onset), and having no diagnosis of atrial fibrillation contributed to a patient more likely having a good outcome at discharge. Figure \ref{fig:global_shap_ott} focusses on the feature \textit{onset to thrombolysis time}, and its effect at reaching any disability threshold. As time from onset to treatment increased, the beneficial effect of thrombolysis decayed. For thresholds up to, and including, mRS 3, the median effect of thrombolysis remained positive, compared to not receiving thrombolysis, up until the maximum time of 720 minutes. For thresholds of mRS 4 and upwards, the median effect of thrombolysis became negative at longer onset-to-treatment times. This was especially apparent in how thrombolysis changed the overall odds of survival (mRS 0-5) where the median effect of thrombolysis became negative from about 155 minutes. Later thrombolysis may therefore increase the proportion of patients attaining mRS 0-3, but at the cost of some reduction in overall survival. Earlier thrombolysis improved the odds of survival. Figure \ref{fig:global_shap_hosp} shows the contribution from attending a specific hospital to predicting whether the patient had a good outcome at discharge, for each of the mRS threshold levels used to define a good outcome. As the threshold for having a good outcome becomes more inclusive, the range of the effect of the hospital attended had a reduced contribution on the prediction.
+SHAP values were calculated for each feature for each instance as how each value affects the log odds of having a good outcome at discharge. For each patient in the test set we extracted SHAP values for each feature with its corresponding feature value. Figure \ref{fig:global_shap_mrs1} shows the relationship between feature values and the odds of a patient having a good outcome (mRS 0-1) at discharge (a positive SHAP value contributes to an increased likelihood, and a negative SHAP value contributes to a reduced likelihood). We see that low prior disability, lower stroke severity, younger age, receiving thrombolysis (and receiving it sooner after onset), and having no diagnosis of atrial fibrillation contributed to a patient more likely having a good outcome at discharge. Figure \ref{fig:global_shap_ott} focusses on the feature \textit{onset to thrombolysis time}, and its effect at reaching any disability threshold. As time from onset to treatment increased, the beneficial effect of thrombolysis decayed. For thresholds up to, and including, mRS 3, the median effect of thrombolysis remained positive, compared to not receiving thrombolysis, up until the maximum time of 720 minutes. For thresholds of mRS 4 and upwards, the median effect of thrombolysis became negative at longer onset-to-treatment times. This was especially apparent in how thrombolysis changed the overall odds of survival (mRS 0-5) where the median effect of thrombolysis became negative from about 155 minutes. Later thrombolysis may therefore increase the proportion of patients attaining mRS 0-3, but at the cost of some reduction in overall survival. Earlier thrombolysis improved the odds of survival. Figure \ref{fig:global_shap_hosp} shows the contribution from attending a specific hospital to predicting whether the patient had a good outcome at discharge, for each of the mRS threshold levels used to define a good outcome. As the threshold for having a good outcome becomes more inclusive, the range of the effect of the hospital attended had a reduced contribution on the prediction.
 
 
 %%%%%%%% PUT ON SEPARATE A4 PAGE LANDSCAPE %%%%%%%%%%%
@@ -101,45 +89,6 @@ For each patient in the test set we extracted SHAP values for each feature with 
 
 
 \subsection{Counterfactuals (what if patients had not received thrombolysis?)}
-
-\subsubsection{For an individual patient}
-
-Figure \ref{fig:double_waterfall} shows the waterfall plot for a single patient who received thrombolysis (figure \ref{fig:lhs_waterfall_with_ivt}), and its counterfactual case had the same patient not received thrombolysis (figure \ref{fig:rhs_waterfall_without_ivt}). This patient had a predicted 0.479 log odds (62\% probability) of having a good outcome (mRS 0-1) at discharge with thrombolysis, and -0.671 (34\% probability) without thrombolysis. By comparing the log odds contributed by the feature \textit{onset to thrombolysis time} in both cases (when the patient received thrombolysis, and not), we can isolate the predicted direct contribution to a good outcome of being given thrombolysis at a specified duration from stroke onset. For the patient in figure \ref{fig:double_waterfall} the predicted direct contribution to a good outcome (mRS 0-1) for being given thrombolysis at 165 minutes from stroke onset was 0.69 log odds (feature \textit{onset to thrombolysis time} contributed 0.57 log odds to the likelihood of a good outcome when given at 165 minutes, and -0.12 log odds when not given).
-
-\begin{figure}[h]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-    \centering
-    \captionsetup{width=.8\linewidth}%
-      \includegraphics[width=1\linewidth]{./images/103_xgb_7_features_1fold_binary_waterfall_plot_patient16_with_IVT.png}\\
-      \caption{Patient with original data (received thrombolysis at 165 minutes)                   
-                                                                                }
-      \label{fig:lhs_waterfall_with_ivt}
-    \end{subfigure}%ults
-    \begin{subfigure}[t]{0.5\textwidth}
-    \centering
-    \captionsetup{width=.8\linewidth}%
-      \includegraphics[width=1\linewidth]{./images/103_xgb_7_features_1fold_binary_waterfall_plot_patient16_without_IVT.png}\\
-        \caption{Counterfactural case of the same patient not receiving thrombolysis (set onset-to-thrombolysis time to 9999 minutes)}
-        \label{fig:rhs_waterfall_without_ivt}
-    \end{subfigure}
-  \caption{The waterfall plot for a single patient, and its counterfactual case, showing the influence of the nine most influential feature values (y-axis) on the predicted likelihood of having a good outcome (mRS 0-1) on discharge (x-axis). Features are ranked in order of importance (top being most influential), with the contribution from the 10th ranked feature onwards being represented as a single contribution (\textit{115 other features}). The features with name prefix \textit{"team\_"} refers to a stroke team, where the value 1 represents the attended team, and the value 0 represents a team not attended. Each machine learning model applies the same SHAP base value (E[f(X)]) to each patient, this can be interpreted as the most likely outcome given no other knowledge of the instance. The sum of the SHAP base value and the SHAP values for each input feature equates to the overall predicted likelihood of having a good outcome on discharge, shown at the top of the plot (f(x)).}
-    \label{fig:double_waterfall}
-\end{figure}
-
-\subsubsection{For a cohort of patients}
-
-Using the counterfactual results for all of the patients in the first k-fold test set that received thrombolysis (n = 6,897), figure \ref{fig:probability_shift} shows the shift in predicted probability of a good outcome at discharge, had they not received thrombolysis. For the majority of the cases, there is a greater probability for a good outcome with thrombolysis.
-
-\begin{figure}[!h]
-    \centering    \includegraphics[width=0.70\textwidth]%{./images/103_xgb_7_features_1fold_binary_probability_shift_counterfactuals_kfold0_no_max_time_mask}\\
-{./images/103_xgb_7_features_1fold_binary_probability_shift_counterfactuals_kfold0_max_time_mask_400}\\
-
-    \caption{The predicted probability of attaining a good outcome with and without thrombolysis, for those patients in the test population that received thrombolysis. Each plot shows the different mRS thresholds used to define a good outcome. The solid black line denotes no change (x=y). The white square shows the same patient across all six plots.}
-    \label{fig:probability_shift}
-\end{figure}
-
-\subsubsection{The direct contribution of thrombolysis use to the shift in probability of a good outcome}
 
 Using the counterfactual results for all of the patients in the first k-fold test set that received thrombolysis within 300 minutes from stroke onset (n = 6,796), figure \ref{fig:linear_regression_plots} shows a linear regression fitted to the shift in the contribution from receiving thrombolysis towards having a good outcome at discharge (mRS 0-1) with respect to the onset to thrombolysis time. We found, for all treated patients, that the effect of thrombolysis had declined to zero at 328 minutes, and the effect from thrombolysis was improving log odds of a good outcome by 0.90 if it were, theoretically, given at the time of stroke onset. We observed that the maximum theoretical effect of thrombolysis (if given at time of stroke onset) was greater for the severe stroke group (1.048 log odds) than the mild-moderate stroke group (0.771 log odds). However the effect of thrombolysis declined a little faster in the severe stroke group (reaching no effect at 314 minutes for severe stroke patients, compared to 351 minutes for mild-moderate stroke patients). Linear regression coefficients in all three patient groups were statistically significant (table \ref{fig:stats_table_mrs1}). 
 
