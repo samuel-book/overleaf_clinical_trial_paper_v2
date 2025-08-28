@@ -1,6 +1,27 @@
-\section{Introduction} [1000]\\
-Stroke occurs in LOTS n? people worldwide and n people in England [citation]. Patients can often be left with disabilities from the stroke (include frequency and level of disability) [citation] which can also be an onwards heavy burden to the National Health Service (NHS) resource use [citation]. A stroke that is caused by a clot (ischaemic stroke) can be treated with a clot busting drug, thrombolysis, if the patient is eligible and it is detected soon enough [citation]. NICE approved use of this drug in 2000? for patients that are (list the eligibility criteria) [citation] based primarily (is this true?) on the results of a meta analysis from clinical trials performed n years ago [citation emberson]. In YEAR? NHS England set a national target for thrombolysis use of 20\% [citation]. National thrombolysis rates have yet to reach this rate, it has more-often remained (and currently is) around 11\% [citation]. A well documented side effect of thrombolysis is that it can cause a catastrophic bleed [citation], and so caution is required to give this drug to those patients that have the best likelihood of receiving benefit from it (and to avoid giving it to patients that are more likely to dis-benefit from it). Resources have been used to focus on increasing the national thrombolysis rate and understanding the barriers to do so [citation]. It has been identified that some clinicians either do not trust the meta analysis results, or (based on the polarised and uncertain outcome from thrombolysis) some clinicians will only consider giving thrombolysis to patients that match the patient cohort that were included in the clinical trials [citation].
+\section{Introduction}
 
-This leads us to question: Are these higher levels of caution in selecting the patients to give thrombolysis to warranted, and do they benefit the outcome for the patients, on a population level?
+% Include
+% 1) What is the problem?
+% 2) What do we know about low and varying use of thrombolysis
+% 3) What do we not know
+% 4) How are we addressing what we don't know
 
-Here we conduct analysis on a national stroke observational dataset to predict the effect of thrombolysis on the likelihood of a patient having a good outcome at time of discharge. We can also analyse the effect of thrombolysis on a wider cohort of patients than were included in the clinical trials (using data recorded for patients that fall outside of the clinical trial cohort, but still received thrombolysis).
+% 1) What is the problem?
+
+Stroke remains one of the top three global causes of death and disability \cite{feigin_global_2021}. Despite reductions in age-standardised rates of stroke, ageing populations are driving an increase in the absolute number of strokes \cite{feigin_global_2021}. Across Europe, in 2017, stroke was estimated to cost healthcare systems \texteuro 27 billion, or 1.7\% of health expenditure \cite{luengo-fernandez_economic_2020}. The burden is increasing; it has been estimated that the number of stroke survivors aged 45 and over in the UK will more than double between 2015 and 2035 \cite{king_future_2020}.
+
+Thrombolysis with recombinant tissue plasminogen activator, can significantly reduce disability after ischaemic stroke, provided it is given in the first few hours after stroke onset \cite{emberson_effect_2014}. 
+
+Despite thrombolysis being of proven benefit in ischaemic stroke, use of thrombolysis varies significantly both between and within European countries \cite{aguiar_de_sousa_access_2019}. In England and Wales the Sentinel Stroke National Audit Programme (SSNAP) reported that in 2021/22, 20 years after the original European Medicines Agency licencing of alteplase for acute ischaemic stroke, thrombolysis rates varied from 1\% to 28\% of emergency stroke admissions between hospitals \cite{sentinel_national_stroke_audit_programme_ssnap_2022}, with a median rate of 10.4\% and an inter-quartile range of 8\%-13\%, against a 2019 NHS England long term plan that 20\% of patients with stroke should be receiving thrombolysis\cite{nhs_long_term_plan_2019}.
+
+% 2) What do we know about low and varying use of thrombolysis
+
+Studies have shown that the reasons for low and varying thrombolysis use are multifactorial. Organizational factors can reduce the effectiveness of thrombolysis administrationation \cite{aguiar_de_sousa_access_2019}. In addition to organisational factors, clinicians can have varying attitudes to use of thrombolysis. In a discrete choice experiment \cite{de_brun_factors_2018}, 138 clinicians considered hypothetical patient vignettes and responded to whether they would give patients thrombolysis. The authors concluded that there was considerable heterogeneity among the respondents in their decision-making about thrombolysis.
+
+We have previously used clinical pathway simulation and machine learning modeling of the variation in thrombolysis choice between stroke teams to establish in England and Wales that the largest contributor to the low and variable use of thrombolysis was the attitudes of clinicians to the use of thrombolysis \cite{pearn_what_2023, allen_use_2022}
+
+% 3) What do we not know
+
+As clinician attitudes to use of thrombolysis in England and Wales underlie the low and variable use of thrombolysis, it is important to test that the benefit of thrombolysis predicted in clinical trials is being observed in the context of real-world stroke care. Various observational studies have provided further support for the effectiveness of thrombolysis \cite{wahlgren_thrombolysis_2007, wahlgren_thrombolysis_2008, manawadu_observational_2013, willeit_thrombolysis_2015}. None of these studies, however, were able to investigate the relationship between time-to-treatment and effectiveness compared to the clinical trial meta-analyses, and none were in a specific context where clinical audit is used to drive change.
+
+With the collection of clinical data for all emergency stroke admissions in England and Wales, and with the power of new explainable and causal machine learning techniques, our aim was to build a model of stroke outcomes, perform a large scale analysis of the benefit of thrombolysis in practice in a UK setting, and to compare the relationship between time-to-treatment and effectiveness with clinical trial results.

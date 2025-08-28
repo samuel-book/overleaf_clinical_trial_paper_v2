@@ -109,32 +109,26 @@ Proportion discharged mRS 5-6 & 119 & 0.254 & 0.051 & 0.147 & 0.221 & 0.253 & 0.
 \end{longtable}
 \normalsize
 
-% Comparison of thrombolysed and non-thrombolysed
-
-
-
 
 \subsection{Feature selection}
 
 \textbf{Summary of findings}
 
+Model with all features
 The model performance with all 58 features is:
+* AUC: 0.818 (std across 5 kfolds: 0.001)
+* Accuracy: 0.440 (std across 5 kfolds: 0.002)
+* Accuracy within one: 0.760 (std across 5 kfolds: 0.002)
 
-\begin{itemize}
-    \item AUC: 0.818 (std across 5 kfolds: 0.001)
-    \item Accuracy: 0.440 (std across 5 kfolds: 0.002)
-    \item Accuracy within one: 0.760 (std across 5 kfolds: 0.002)
-    \item 
-\end{itemize}
-
-We sequentially chose features up to 25 features. We saw that once 14 features we selected, the model chose a feature (infarction) that is the same value for all patients, hence no more information was being obtained beyond this point:
+\textbf{Sequentially selecting features}
+Sequentially chose features up to 25 features. We saw that once 14 features we selected, the model choose a feature (infarction) that is the same value for all patients, hence no more information was being obtained beyond this point:
 
 \begin{enumerate}
     \item prior\_disability, AUC: 0.687
     \item stroke\_severity, AUC: 0.770
     \item stroke\_team, AUC: 0.800
     \item age, AUC: 0.806
-    \item year, AUC: 0.811
+    \item  year, AUC: 0.811
     \item nihss\_arrival\_loc, AUC: 0.814
     \item scan\_to\_thrombolysis\_time, AUC: 0.816
     \item thrombolysis\_no\_but\_improving, AUC: 0.817
@@ -158,9 +152,7 @@ We sequentially chose features up to 25 features. We saw that once 14 features w
 \end{enumerate}
 
 \textbf{Features chosen for the predictive model}
-
-We will include these 7 key features in our model.
-
+We will include these 7 features in our model (reasoning given below):
 \begin{enumerate}
     \item prior\_disability
     \item stroke\_severity
@@ -171,10 +163,68 @@ We will include these 7 key features in our model.
     \item precise\_onset\_known
 \end{enumerate}
 
-We did not include year as that is not a generalisable feature,
+\textbf{Additional experiments to inform choice of features}
 
-Figure \ref{fig:feature_selection} shows the mean ROC-AUC for the 5 kfold model, sequentially selecting the features.
+To inform us further about which features to include in our model, we carried out some additional experiments (in other notebooks). Here is what we learnt, and our feature selection choice based on this.
 
+\textbf{Why we chose these 7 features:}
+\begin{itemize}
+    \item * prior\_disability (easy selection choice)
+    \item * stroke\_severity (checked the impact of using the separate NIHSS features instead - decided including stroke severity captured the information)
+    \item * stroke\_team (easy selection choice)
+    \item * age (easy selection choice)
+    \item * onset\_to\_thrombolysis\_time (scan\_to\_thrombolysis\_time is a selected feature, however the feature onset-to-thrombolysis time is a more useful feature to include as it aligns with other research and the clinical focus.We compared the SHAP plots from models that included either (and neither) of these duration features. Across the three models, the other features (age, prior disability, stroke severity) are not affected by the inclusion of either duration feature, nor is any performance accuracy lost)
+    \item * any\_afib\_diagnosis (Both new\_afib\_diagnosis and atrial\_fibrillation features are in the list above, and we have seen that an atrial fibrillation diagnosis contributes for the mRS6 outcome. We will include any\_afib\_diagnosis as this includes both of the other atrial fibrillation features information. We compared the SHAP plots from models that included one of these atrial fibrillation diagnosis features (and none). Across those models, the other features (age, prior disability, stroke severity) are not affected by the inclusion of which atrial fibrillation feature, nor is any performance accuracy lost).
+    \item * precise\_onset\_known (Not included in the feature selection list, however may be useful to include so people can see whether it makes a significant difference to outcomes, as this is often a discussion point amongst clinicians)
+\end{itemize}
+
+\textbf{Why we didn't include these features:}
+* YEAR: Any data from beyond 2021 (the latest year in the dataset), the model has yet to see any information about that year. If the decision tree treats the ”Year” feature as a numerical value, any future year will be grouped along with year 2021 for each split - check how the model is treating the Year feature.
+
+We reran feature selection excluding the feature "stroke team" as an option. The feature "Year" was now not a selected features. Here are those results:
+
+There are 56 features
+All features, AUC: 0.786 (std across 5 kfolds: 0.001)
+All features, accuracy: 0.387 (std across 5 kfolds: 0.003)
+All features, accuracy within one: 0.734 (std across 5 kfolds: 0.003)
+
+\begin{enumerate}
+    \item prior\_disability, AUC0.687
+    \item stroke\_severity, AUC0.770
+    \item age, AUC0.777
+    \item nihss\_arrival\_loc, AUC0.779
+    \item scan\_to\_thrombolysis\_time, AUC0.780
+    \item thrombolysis\_no\_but\_improving, AUC0.782
+    \item nihss\_arrival\_best\_language, AUC0.783
+    \item thrombolysis\_no\_but\_other\_medical, AUC0.783
+    \item nihss\_arrival\_sensory, AUC0.784
+    \item 0nihss\_arrival\_facial\_palsy, AUC0.784
+    \item nihss\_arrival\_limb\_ataxia, AUC0.784
+    \item nihss\_arrival\_motor\_arm\_left, AUC0.785
+    \item nihss\_arrival\_best\_gaze, AUC0.785
+    \item diabetes, AUC0.785
+    \item thrombolysis\_no\_but\_comorbidity, AUC0.785
+    \item nihss\_arrival\_motor\_arm\_right, AUC0.786
+    \item thrombolysis\_no\_but\_too\_mild\_severe, AUC0.786
+    \item onset\_during\_sleep, AUC0.786
+    \item precise\_onset\_known, AUC0.786
+    \item atrial\_fibrillation, AUC0.786
+    \item infarction, AUC0.786
+    \item arrive\_by\_ambulance, AUC0.786
+    \item nihss\_complete, AUC0.786
+    \item prior\_stroke\_tia, AUC0.786
+    \item nihss\_arrival\_dysarthria, AUC0.786
+\end{enumerate}
+
+To investigate the interaction between "stroke team" and "year" we created some binary models (as SHAP interaction can not be calculated for a multiclass model). This showed that ....
+
+* Individual NIHSS features are not included, as we are already including the feature stroke severity, and this is dependent on the individual NIHSS features (SHAP required features to be independant, apart from with the target feature)
+* scan\_to\_thrombolysis\_time is being represented by the feature onset\_to\_thrombolysis\_time
+* atrial\_fibrillation and new\_afib\_dianosis are being represented by the feature any\_afib\_diagnosis
+* thrombolysis\_no\_but\_improving (there is a messiness of this feature overlapping with the onset\_to\_thrombolysis\_time. We would now have two features saying that the patient does not receive IVT).
+* thrombolysis\_no\_but\_other\_medical (the SHAP plots show that this feature does not have a big effect on predicting the outcome).
+
+Figure \ref{fig:feature_selection} shows the mean ROCAUC for the 5 kfold model, sequentially selecting the features.
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.75\textwidth]{./images/020_feature_selection.jpg}\\
@@ -183,7 +233,140 @@ Figure \ref{fig:feature_selection} shows the mean ROC-AUC for the 5 kfold model,
 \end{figure}
 
 
+\subsection{Feature selection}
+
+\textbf{Summary of findings}
+
+The model performance with all 58 features is:
+
+\begin{itemize}
+    \item AUC: 0.818 (std across 5 kfolds: 0.001)
+    \item Accuracy: 0.440 (std across 5 kfolds: 0.002)
+    \item Accuracy within one: 0.760 (std across 5 kfolds: 0.002)
+\end{itemize}
+
+\textbf{Sequentially selecting features}
+
+Sequentially chose features up to 25 features. We saw that once 14 features we selected, the model choose a feature (infarction) that is the same value for all patients, hence no more information was being obtained beyond this point:
+Feature  1: prior\_disability, AUC: 0.687
+Feature  2: stroke\_severity, AUC: 0.770
+Feature  3: stroke\_team, AUC: 0.800
+Feature  4: age, AUC: 0.806
+Feature  5: year, AUC: 0.811
+Feature  6: nihss\_arrival\_loc, AUC: 0.814
+Feature  7: scan\_to\_thrombolysis\_time, AUC: 0.816
+Feature  8: thrombolysis\_no\_but\_improving, AUC: 0.817
+Feature  9: nihss\_arrival\_best\_language, AUC: 0.818
+Feature 10: new\_afib\_diagnosis, AUC: 0.818
+Feature 11: nihss\_arrival\_sensory, AUC: 0.819
+Feature 12: atrial\_fibrillation, AUC: 0.819
+Feature 13: nihss\_arrival\_facial\_palsy, AUC: 0.819
+Feature 14: thrombolysis\_no\_but\_other\_medical, AUC: 0.819
+Feature 15: infarction, AUC: 0.819
+Feature 16: arrive\_by\_ambulance, AUC: 0.819
+Feature 17: nihss\_arrival\_motor\_arm\_left, AUC: 0.819
+Feature 18: thrombolysis\_no\_but\_comorbidity, AUC: 0.819
+Feature 19: nihss\_arrival\_loc\_questions, AUC: 0.819
+Feature 20: nihss\_arrival\_motor\_arm\_right, AUC: 0.819
+Feature 21: nihss\_arrival\_best\_gaze, AUC: 0.820
+Feature 22: thrombolysis\_no\_but\_too\_mild\_severe, AUC: 0.820
+Feature 23: diabetes, AUC: 0.820
+Feature 24: thrombolysis\_no\_but\_haemorrhagic, AUC: 0.820
+Feature 25: thrombolysis\_no\_but\_medication, AUC: 0.820
+
+\textbf{Features chosen for the predictive model}
+We will include these 7 features in our model (reasoning given below):
+Feature  1: prior\_disability
+Feature  2: stroke\_severity
+Feature  3: stroke\_team
+Feature  4: age
+Feature  5: onset\_to\_thrombolysis\_time
+Feature  6: any\_afib\_diagnosis
+Feature  7: precise\_onset\_known
+
+\textbf{Additional experiments to inform choice of features}
+
+To inform us further about which features to include in our model, we carried out some additional experiments (in other notebooks). Here is what we learnt, and our feature selection choice based on this.
+
+\textbf{Why we chose these 7 features:}
+* prior\_disability (easy selection choice)
+* stroke\_severity (checked the impact of using the separate NIHSS features instead - decided including stroke severity captured the information)
+* stroke\_team (easy selection choice)
+* age (easy selection choice)
+* onset\_to\_thrombolysis\_time (scan\_to\_thrombolysis\_time is a selected feature, however the feature onset-to-thrombolysis time is a more useful feature to include as it aligns with other research and the clinical focus.We compared the SHAP plots from models that included either (and neither) of these duration features. Across the three models, the other features (age, prior disability, stroke severity) are not affected by the inclusion of either duration feature, nor is any performance accuracy lost)
+* any\_afib\_diagnosis (Both new\_afib\_diagnosis and atrial\_fibrillation featrures are in the list above, and we have seen that an atrial fibrillation diagnosis contributes for the mRS6 outcome. We will include any\_afib\_diagnosis as this includes both of the other atrial fibrillation features information. We compared the SHAP plots from models that included one of these atrial fibrillation diagnosis features (and none). Across those models, the other features (age, prior disability, stroke severity) are not affected by the inclusion of which atrial fibrillation feature, nor is any performance accuracy lost).
+* precise\_onset\_known (Not included in the feature selection list, however may be useful to include so people can see whether it makes a significant difference to outcomes, as this is often a discussion point amongst clinicians)
+
+\textbf{Why we didn't include these features:}
+* YEAR: Any data from beyond 2021 (the latest year in the dataset), the model has yet to see any information about that year. If the decision tree treats the ”Year” feature as a numerical value, any future year will be grouped along with year 2021 for each split - check how the model is treating the Year feature.
+
+We reran feature selection excluding the feature "stroke team" as an option. The feature "Year" was now not a selected features. Here are those results:
+
+There are 56 features
+All features, AUC: 0.786 (std across 5 kfolds: 0.001)
+All features, accuracy: 0.387 (std across 5 kfolds: 0.003)
+All features, accuracy within one: 0.734 (std across 5 kfolds: 0.003)
+
+Feature  1: prior\_disability, AUC: 0.687
+Feature  2: stroke\_severity, AUC: 0.770
+Feature  3: age, AUC: 0.777
+Feature  4: nihss\_arrival\_loc, AUC: 0.779
+Feature  5: scan\_to\_thrombolysis\_time, AUC: 0.780
+Feature  6: thrombolysis\_no\_but\_improving, AUC: 0.782
+Feature  7: nihss\_arrival\_best\_language, AUC: 0.783
+Feature  8: thrombolysis\_no\_but\_other\_medical, AUC: 0.783
+Feature  9: nihss\_arrival\_sensory, AUC: 0.784
+Feature 10: nihss\_arrival\_facial\_palsy, AUC: 0.784
+Feature 11: nihss\_arrival\_limb\_ataxia, AUC: 0.784
+Feature 12: nihss\_arrival\_motor\_arm\_left, AUC: 0.785
+Feature 13: nihss\_arrival\_best\_gaze, AUC: 0.785
+Feature 14: diabetes, AUC: 0.785
+Feature 15: thrombolysis\_no\_but\_comorbidity, AUC: 0.785
+Feature 16: nihss\_arrival\_motor\_arm\_right, AUC: 0.786
+Feature 17: thrombolysis\_no\_but\_too\_mild\_severe, AUC: 0.786
+Feature 18: onset\_during\_sleep, AUC: 0.786
+Feature 19: precise\_onset\_known, AUC: 0.786
+Feature 20: atrial\_fibrillation, AUC: 0.786
+Feature 21: infarction, AUC: 0.786
+Feature 22: arrive\_by\_ambulance, AUC: 0.786
+Feature 23: nihss\_complete, AUC: 0.786
+Feature 24: prior\_stroke\_tia, AUC: 0.786
+Feature 25: nihss\_arrival\_dysarthria, AUC: 0.786
+
+To investigate the interaction between "stroke team" and "year" we created some binary models (as SHAP interaction can not be calculated for a multiclass model). This showed that ....
+
+* Individual NIHSS features are not included, as we are already including the feature stroke severity, and this is dependent on the individual NIHSS features (SHAP required features to be independant, apart from with the target feature)
+* scan\_to\_thrombolysis\_time is being represented by the feature onset\_to\_thrombolysis\_time
+* atrial\_fibrillation and new\_afib\_dianosis are being represented by the feature any\_afib\_diagnosis
+* thrombolysis\_no\_but\_improving (there is a messiness of this feature overlapping with the onset\_to\_thrombolysis\_time. We would now have two features saying that the patient does not receive IVT).
+* thrombolysis\_no\_but\_other\_medical (the SHAP plots show that this feature does not have a big effect on predicting the outcome).
+
+\iffalse
+\subsection{Learning curve}
+
+
+\begin{figure}[!ht]
+\centering
+    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/015_xgb_all_features_learning_curve_binary_learning_curve_mrs0.jpg}}
+\hfil
+    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/015_xgb_all_features_learning_curve_binary_learning_curve_mrs1.jpg}}
+
+    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/015_xgb_all_features_learning_curve_binary_learning_curve_mrs2.jpg}}
+\hfil
+    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/015_xgb_all_features_learning_curve_binary_learning_curve_mrs3.jpg}}
+
+    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/015_xgb_all_features_learning_curve_binary_learning_curve_mrs4.jpg}}
+\hfil
+    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/015_xgb_all_features_learning_curve_binary_learning_curve_mrs5.jpg}}
+    \label{fig:learning_rate}
+  \caption{Learning rate for each of the mRS threshold levels to define a good outcome (using all the data). Model has all input features.}
+
+\end{figure}
+\fi
+
+
 \subsection{Effect of choosing 7 features on accuracy}
+
 
 \begin{figure}[!ht]
     \centering

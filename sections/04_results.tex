@@ -4,54 +4,81 @@
 
 The 168,347 patients (who had onset-to-scan of within 255 minutes) attended 118 hospitals with admissions ranging from 358 to 4,559, with thrombolysis rates ranging from 5.9\% to 39.2\%. Of those 133,516 patients that did not receive thrombolysis, their range of disability at discharge was: 12\% mRS 0, 33\% mRS 0-1, 52\% mRS 0-2, 69\% mRS 0-3, 82\% mRS 0-4, and 88\% mRS 0-5 at discharge. Of those 34,831 patients that received thrombolysis, their range of disability at discharge was: 15\% mRS 0, 35\% mRS 0-1, 54\% mRS 0-2, 69\% mRS 0-3, 81\% mRS 0-4, and 86\% mRS 0-5.
 
-Table \ref{tab:descriptive_stats} shows further descriptive statistics for the patients who received thrombolysis.
+Table \ref{tab:descriptive_stats} shows further descriptive statistics for patients who received, or did not receive, thrombolysis.
 
 \begin{minipage}{1\textwidth}
 \small
-\renewcommand{\arraystretch}{1.2}
-\begin{longtable}[]{@{}lllllllll@{}}
-\caption{Descriptive statistics for patients who received thrombolysis}\label{tab:descriptive_stats}\\
-\toprule
-Patient feature &  Mean & Std Dev & Min & Q1 & Q2 & Q3 & Max\tabularnewline
+\begin{longtable}[]{@{}l | lll | lll @{}}
+\caption{Descriptive statistics for patients receving or not receiving thrombolysis.}\\
+\toprule\noalign{}
+& \multicolumn{3}{c|}{Thrombolysis given} & \multicolumn{3}{c}{Thrombolysis not given} \\ 
+%\midrule\noalign{}
 \endhead
-\midrule
-Age (5 year age bands) & 73 & 13 & 37.5 & 62.5 & 72.5 & 82.5 & 92.5\tabularnewline
-Proportion male & 0.55 & - & - & - & - & - & -\tabularnewline
-Prior disability (mRS) & 0.8 & 1.2 & 0 & 0 & 0 & 1 & 5\tabularnewline
-Stroke severity (NIHSS) & 10.8 & 7.0 & 0 & 5 & 9 & 16 & 42\tabularnewline
-Onset to thrombolysis time (minutes) &  163 & 60 & 7 & 120 & 155 & 198 & 720\tabularnewline
-Discharge disability (mRS) &  2.6 & 1.9 & 0 & 1 & 2 & 4 & 6\tabularnewline
-\bottomrule
+\bottomrule\noalign{}
+\endlastfoot
 
+& n & Mean (StdDev) & Median (IQR) & n & Mean (StdDev) & Median (IQR) \\
+\midrule\noalign{}
+Age & 41163 & 72.3 (13.6) & 72.5 (62.5-82.5) & 315941 & 74.5 (13.3) & 77.5 (67.5-82.5) \\
+Infarction & 41163 & 1 (NA) & NA & 315941 & 0.86 (NA) & NA \\
+Stroke severity & 41163 & 11.0 (7.1) & 9 (5-16) & 315941 & 6.6 (7.6) & 4 (2-8) \\
+Prior disability & 41163 & 0.71 (1.17) & 0 (0-1) & 315941 & 1.08 (1.39) & 0 (0-2) \\
+Male & 41163 & 0.56 (NA) & NA & 315941 & 0.53 (NA) & NA \\
+Onset known & 41163 & 0.99 (NA) & NA & 315941 & 0.63 (NA) & NA \\
+Precise onset known & 41163 & 0.80 (NA) & NA & 315941 & 0.28 (NA) & NA \\
+Onset during sleep & 41163 & 0.01 (NA) & NA & 315941 & 0.15 (NA) & NA \\
+Onset to arrival time & 40583 & 102 (53) & 90 (66-128) & 198105 & 57 (1115) & 250 (112-713) \\
+Arrive by ambulance & 41161 & 0.92 (NA) & NA & 315934 & 0.77 (NA) & NA \\
+Arrival to scan time & 41163 & 23 (20) & 19 (11-29) & 315941 & 217 (2016) & 61 (26-149) \\
+Congestive heart failure & 41163 & 0.04 (NA) & NA & 315941 & 0.05 (NA) & NA \\
+Hypertension & 41163 & 0.51 (NA) & NA & 315941 & 0.55 (NA) & NA \\
+Atrial fibrillation & 41163 & 0.12 (NA) & NA & 315941 & 0.19 (NA) & NA \\
+New afib diagnosis & 24485 & 0.11 (NA) & NA & 172727 & 0.06 (NA) & NA \\
+Diabetes & 41163 & 0.17 (NA) & NA & 315941 & 0.22 (NA) & NA \\
+Prior stroke tia & 41163 & 0.20 (NA) & NA & 315941 & 0.26 (NA) & NA \\
+Afib antiplatelet & 41163 & 0.03 (NA) & NA & 315940 & 0.03 (NA) & NA \\
+Afib anticoagulant & 30128 & 0.04 (NA) & NA & 237923 & 0.19 (NA) & NA \\
+Afib vit k anticoagulant & 41163 & 0.01 (NA) & NA & 315940 & 0.03 (NA) & NA \\
+Afib DOAC anticoagulant & 41163 & 0.01 (NA) & NA & 315940 & 0.08 (NA) & NA \\
+Afib heparin anticoagulant & 41163 & 0.00 (NA) & NA & 315940 & 0.00 (NA) & NA \\
+Thrombolysis & 41163 & 1.00 (NA) & NA & 315941 & 0.00 (NA) & NA \\
+Scan to thrombolysis time & 41163 & 37 (29) & 31 (19-47) & NA & NA & NA \\
+Thrombectomy & 41163 & 0.06 (NA) & NA & 315941 & 0.01 (NA) & NA \\
+Arrival to thrombectomy time & 2591 & 201 (179) & 171 (114-233) & 1752 & 249 (278) & 172 (104-269) \\
+\label{tab:descriptive_stats}
 \end{longtable}
-\normalsize
 \end{minipage}
 
 \subsection{Feature selection and proposed causal model}
 
-Using the results from Pearn \textit{el at}. \cite{pearn_are_2024}, we selected 7 features as inputs for the model to predict a patient's likelihood of a good outcome at discharge:
+Features affecting choice of thrombolysis have previously been described \cite{pearn_are_2024}. Based on the selection of characteristics for the prediction of the outcome, we propose \ref{fig:dag} as a causal diagram of the factors that affect the use of thrombolysis and the factors that directly affect the outcome. This proposed causal model is based on features identified as affecting outcome or propensity to use thrombolysis, correlations present in the data, known temporal relationships in the data, and clinical review. 
 
-\begin{enumerate}
-    \item Prior disability level: Disability level (mRS) before stroke
-    \item Stroke severity: Stroke severity (NIHSS) on arrival
-    \item Stroke team: Attended hospital
-    \item Age: Age (as middle of 5 year age bands)
-    \item Onset to thrombolysis time: Time from onset to receiving thrombolysis (minutes). This was set to 9,999 if the patient did not receive thrombolysis.
-    \item Atrial fibrillation diagnosis: Patient had a diagnosis of atrial fibrillation (either on arrival or diagnosed during admission)
-    \item Precise onset known: Onset time recorded was recorded as being precise time (as opposed to a best estimate)
-\end{enumerate}
+Figure \ref{fig:dag} shows features which have been identified as 
 
 \begin{figure}[!h]
     \centering%\captionsetup{width=.8\linewidth}%
       \includegraphics[width=0.80\linewidth]{./images/thrombolysis_dag.png}\\
-  \caption{A Directed Acyclic Graph ('DAG') showing the proposed causal relationships. These relationships were derived from feature selection; identifying key features that were predictive of thrombolysis use or outcome. Dashed lines show features affecting propensity to receive thrombolysis; solid lines show features predictive of outcome.}
-    \label{fig:single_waterfall_with_ivt}
+  \caption{A Directed Acyclic Graph ('DAG') showing the proposed causal relationships in propensity to use thrombolysis and outcome after stroke with or without thrombolysis.}
+    \label{fig:dag}
 \end{figure}
+
+In order to isolate the effect of thrombolysis appropriately we predicted outcome based on use/time to thrombolysis, and 6 factors identified as confounding variables (affecting both outcome directly and propensity to use thrombolysis):
+
+\begin{enumerate}
+    \item Onset to thrombolysis time: Time from onset to receiving thrombolysis (minutes). This was set to 9,999 if the patient did not receive thrombolysis.
+    \item Prior disability level: Disability level (mRS) before stroke
+    \item Stroke severity: Stroke severity (NIHSS) on arrival
+    \item Stroke team: Attended hospital
+    \item Age: Age (as middle of 5 year age bands)
+    \item Atrial fibrillation diagnosis: Patient had a diagnosis of atrial fibrillation (either on arrival or diagnosed during admission)
+    \item Precise onset known: Onset time recorded was recorded as being precise time (as opposed to a best estimate)
+\end{enumerate}
+
 
 
 \subsection{Model accuracy}
 
-With 7 input features, overall accuracy ranged from 77.6\% to 89.7\% across the six models (standard deviation across the 5 k-folds ranged from 0.001 to 0.002). This represented between 95-98\% of the accuracy that is obtained with all the features as inputs. ROC-AUC ranged from 0.852 to 0.893 across the six models (standard deviation across the 5 k-folds ranged from 0.001 to 0.002). Results were reproducible across the 5 k-folds, so further analysis was performed on the first k-fold split.
+With seven input features, the overall accuracy ranged from 77. 6\% to 89. 7\% in the six disability level models (the standard deviation in the 5 k-fold ranged from 0.001 to 0.002). This represented between 95-98\% of the accuracy that is obtained with all the features as inputs. ROC-AUC ranged from 0.852 to 0.893 across the six models (standard deviation across the 5 k-folds ranged from 0.001 to 0.002). Results were reproducible across the 5 k-folds, so subsequent analysis was performed on the first k-fold split.
 
 \subsection{Global SHAP patterns}
 
