@@ -1,12 +1,22 @@
 %TC:ignore
-\section{Supplementary material}
 
-\subsection{Descriptive statistics}
+{\huge Supplementary material: A causal machine learning study of the effect of thrombolysis on outcome at discharge in the UK stroke registry: How does benefit compare with clinical trials?}
+
+
+\section{Data}
+
+Data were retrieved for 168,347 emergency stroke admissions to acute stroke teams in England for six years, 2016–2021 (inclusive), obtained from the Sentinel Stroke National Audit Programme (SSNAP). Data fields were provided for the hyper-acute phase of the stroke pathway, up to and including our target feature: disability on inpatient discharge. Disability is recorded in the SSNAP dataset using the modified Rankin Scale (mRS), where mRS 0 represents perfect health and mRS 6 represents death. The data includes 118 acute stroke hospitals (each has at least 250 stroke admissions and delivers thrombolysis to at least 10 patients in the six years).
+
+
+
+\section{Descriptive statistics by stroke team}
+
+The following tables show statistics aggregated by stroke team.
 
 \small
 \renewcommand{\arraystretch}{1.3}
 \begin{longtable}{p{7cm} p{1cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm}}
-\caption{Descriptive statistics for all patients arriving at each stroke team. The table shows summary statistics across all stroke teams.}\\
+\caption{Descriptive statistics \textbf{for all patients} arriving at each stroke team. The table shows summary statistics across all stroke teams.}\\
 \toprule
 \endhead
 Statistic & Stroke teams & mean & Std Dev & min & 25\% & 50\% & 75\% & max\tabularnewline
@@ -26,7 +36,7 @@ Proportion with precisely known onset & 119 & 0.33 & 0.11 & 0.01 & 0.28 & 0.34 &
 Proportion onset during sleep & 119 & 0.14 & 0.06 & 0.00 & 0.09 & 0.14 & 0.17 & 0.34\tabularnewline
 Proportion arrive by ambulance & 119 & 0.78 & 0.07 & 0.47 & 0.76 & 0.79 & 0.82 & 0.92\tabularnewline
 Call-to-ambulance arrival time (minutes, median) & 113 & 22 & 10 & 13 & 17 & 20 & 24 & 103\tabularnewline
-Ambulance on scene time (median) & 113 & 31 & 3 & 20 & 28 & 31 & 33 & 41\tabularnewline
+Ambulance on scene time (minutes, median) & 113 & 31 & 3 & 20 & 28 & 31 & 33 & 41\tabularnewline
 Ambulance conveyance time (minutes, median) & 113 & 18 & 5 & 10 & 15 & 17 & 21 & 37\tabularnewline
 Arrival-to-scan time (minutes, median) & 119 & 53 & 21 & 13 & 39 & 51 & 63 & 129\tabularnewline
 Proportion receiving thrombolysis & 119 & 0.115 & 0.034 & 0.021 & 0.092 & 0.110 & 0.136 & 0.245\tabularnewline
@@ -41,7 +51,7 @@ Proportion discharged mRS 5-6 & 119 & 0.195 & 0.037 & 0.095 & 0.170 & 0.198 & 0.
 
 \small
 \begin{longtable}{p{7cm} p{1cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm}}
-\caption{Descriptive statistics for patients arriving at each stroke team, for patients arriving within 4 hours of known stroke onset. The table shows summary statistics across all stroke teams.}\\
+\caption{Descriptive statistics for patients arriving at each stroke team, \textbf{for patients arriving within 4 hours of known stroke onset}. The table shows summary statistics across all stroke teams.}\\
 \toprule
 \endhead
 Statistic & Stroke teams & mean & Std Dev & min & 25\% & 50\% & 75\% & max\tabularnewline
@@ -61,7 +71,7 @@ Proportion with precisely known onset & 119 & 0.62 & 0.17 & 0.02 & 0.54 & 0.66 &
 Proportion onset during sleep & 119 & 0.05 & 0.05 & 0.00 & 0.01 & 0.03 & 0.06 & 0.30\tabularnewline
 Proportion arrive by ambulance & 119 & 0.89 & 0.07 & 0.54 & 0.87 & 0.91 & 0.93 & 0.98\tabularnewline
 Call-to-ambulance arrival time (minutes, median) & 110 & 19 & 5 & 8 & 16 & 18 & 21 & 51\tabularnewline
-Ambulance on scene time (median) & 110 & 28 & 4 & 20 & 26 & 28 & 31 & 46\tabularnewline
+Ambulance on scene time (minutes, median) & 110 & 28 & 4 & 20 & 26 & 28 & 31 & 46\tabularnewline
 Ambulance conveyance time (minutes, median) & 110 & 17 & 4 & 9 & 14 & 16 & 20 & 28\tabularnewline
 Arrival-to-scan time (minutes, median) & 119 & 27 & 11 & 4 & 21 & 28 & 34 & 100\tabularnewline
 Proportion receiving thrombolysis & 119 & 0.293 & 0.070 & 0.111 & 0.250 & 0.282 & 0.333 & 0.534\tabularnewline
@@ -76,7 +86,7 @@ Proportion discharged mRS 5-6 & 119 & 0.236 & 0.045 & 0.138 & 0.208 & 0.231 & 0.
 
 \small
 \begin{longtable}{p{7cm} p{1cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm} p{0.8cm}}
-\caption{Descriptive statistics for patients arriving at each stroke team, for patients arriving by ambulance within 4 hours of known stroke onset. The table shows summary statistics across all stroke teams.}\\
+\caption{Descriptive statistics for patients arriving at each stroke team, \textbf{for patients arriving by ambulance within 4 hours of known stroke onset}. The table shows summary statistics across all stroke teams.}\\
 \toprule
 \endhead
 Statistic & Stroke teams & mean & Std Dev & min & 25\% & 50\% & 75\% & max\tabularnewline
@@ -96,7 +106,7 @@ Proportion with precisely known onset & 119 & 0.62 & 0.17 & 0.02 & 0.54 & 0.65 &
 Proportion onset during sleep & 119 & 0.05 & 0.05 & 0.00 & 0.01 & 0.03 & 0.06 & 0.33\tabularnewline
 Proportion arrive by ambulance & 119 & 1.00 & 0.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00\tabularnewline
 Call-to-ambulance arrival time (minutes, median) & 110 & 19 & 5 & 8 & 16 & 18 & 21 & 51\tabularnewline
-Ambulance on scene time (median) & 110 & 28 & 4 & 20 & 26 & 28 & 31 & 46\tabularnewline
+Ambulance on scene time (minutes, median) & 110 & 28 & 4 & 20 & 26 & 28 & 31 & 46\tabularnewline
 Ambulance conveyance time (minutes, median) & 110 & 17 & 4 & 9 & 14 & 16 & 20 & 28\tabularnewline
 Arrival-to-scan time (minutes, median) & 119 & 26 & 11 & 4 & 20 & 25 & 33 & 95\tabularnewline
 Proportion receiving thrombolysis & 119 & 0.300 & 0.072 & 0.130 & 0.252 & 0.289 & 0.345 & 0.537\tabularnewline
@@ -109,25 +119,22 @@ Proportion discharged mRS 5-6 & 119 & 0.254 & 0.051 & 0.147 & 0.221 & 0.253 & 0.
 \end{longtable}
 \normalsize
 
-% Comparison of thrombolysed and non-thrombolysed
+\clearpage
 
-
-
-
-\subsection{Feature selection}
+\section{Feature selection}
 
 \textbf{Summary of findings}
 
-The model performance with all 58 features is:
+The model performance with all 58 features was:
 
 \begin{itemize}
     \item AUC: 0.818 (std across 5 kfolds: 0.001)
     \item Accuracy: 0.440 (std across 5 kfolds: 0.002)
     \item Accuracy within one: 0.760 (std across 5 kfolds: 0.002)
-    \item 
+
 \end{itemize}
 
-We sequentially chose features up to 25 features. We saw that once 14 features we selected, the model chose a feature (infarction) that is the same value for all patients, hence no more information was being obtained beyond this point:
+We sequentially chose features up to 25 features. Each feature was chosen to maximise mean ROC-AUC over 5 k-folds. We found that once 14 features were selected, the model chose a feature (infarction) that is the same value for all patients, hence no more information was being obtained beyond this point:
 
 \begin{enumerate}
     \item prior\_disability, AUC: 0.687
@@ -145,21 +152,11 @@ We sequentially chose features up to 25 features. We saw that once 14 features w
     \item nihss\_arrival\_facial\_palsy, AUC: 0.819
     \item thrombolysis\_no\_but\_other\_medical, AUC: 0.819
     \item infarction, AUC: 0.819
-    \item arrive\_by\_ambulance, AUC: 0.819
-    \item nihss\_arrival\_motor\_arm\_left, AUC: 0.819
-    \item thrombolysis\_no\_but\_comorbidity, AUC: 0.819
-    \item nihss\_arrival\_loc\_questions, AUC: 0.819
-    \item nihss\_arrival\_motor\_arm\_right, AUC: 0.819
-    \item nihss\_arrival\_best\_gaze, AUC: 0.820
-    \item thrombolysis\_no\_but\_too\_mild\_severe, AUC: 0.820
-    \item diabetes, AUC: 0.820
-    \item thrombolysis\_no\_but\_haemorrhagic, AUC: 0.820
-    \item thrombolysis\_no\_but\_medication, AUC: 0.820
 \end{enumerate}
 
 \textbf{Features chosen for the predictive model}
 
-We will include these 7 key features in our model.
+We included 7 key features in our model:
 
 \begin{enumerate}
     \item prior\_disability
@@ -173,203 +170,62 @@ We will include these 7 key features in our model.
 
 We did not include year as that is not a generalisable feature,
 
-Figure \ref{fig:feature_selection} shows the mean ROC-AUC for the 5 kfold model, sequentially selecting the features.
+Figure \ref{fig:feature_selection} shows the mean ROC-AUC for the 5 k-fold model, sequentially selecting the features.
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.75\textwidth]{./images/020_feature_selection.jpg}\\
-    \caption{Feature selection}
+    \caption{Improving model accuracy (Mean ROC AUC over 5 k-fold. \textit{Left}: Accuracy with 1-25 features. \textit{Right}: Accuracy with 1-10 features.}
     \label{fig:feature_selection}
 \end{figure}
 
+Tables \ref{tab:table_accuracy_feature_selection} and \ref{tab:table_rocauc_feature_selection} show model accuracy (\% correct) and ROC-AUC for the models with all features and the selected 7 features. 
 
-\subsection{Effect of choosing 7 features on accuracy}
 
-\begin{figure}[!ht]
+\begin{table}[ht]
     \centering
-        \begin{tabular}{lllll}
+    \caption{Accuracy (\% correct) of model with all 57 features, and 7 features.}
+    \label{tab:table_accuracy_feature_selection}
+    \begin{tabular}{llll}
         \toprule
-         & Model accuracy (\%) & &Accuracy captured (\%)\\ 
-%         \midrule
-%        \toprule
-         mRS range & All features & 7 features & by 7 feature model\\ 
-         \midrule
-        mRS 0 & 89.9  & 88.2 & 98.1\\
-        mRS 0-1 & 81.5  & 77.6 & 95.2\\
-        mRS 0-2 & 83.2  & 80.0 & 96.2\\
-        mRS 0-3 & 87.1  & 84.3 & 96.8\\
-        mRS 0-4 & 90.6  & 88.1 & 97.2\\
-        mRS 0-5 & 92.1  & 89.7 & 97.4\\
+         & \multicolumn{2}{c}{Model accuracy (\%)} & Accuracy captured (\%) \\
+         mRS range & All features & 7 features & by 7 feature model \\
+        \midrule
+        mRS 0   & 89.9 & 88.2 & 98.1 \\
+        mRS 0-1 & 81.5 & 77.6 & 95.2 \\
+        mRS 0-2 & 83.2 & 80.0 & 96.2 \\
+        mRS 0-3 & 87.1 & 84.3 & 96.8 \\
+        mRS 0-4 & 90.6 & 88.1 & 97.2 \\
+        mRS 0-5 & 92.1 & 89.7 & 97.4 \\
         \bottomrule
-        \end{tabular}
-      \caption{Accuracy of model with all 57 features, and 7 features.}
-      \label{fig:table_accuracy_feature_selection}
+    \end{tabular}
+\end{table}
 
-\end{figure}
 
-\begin{figure}[!ht]
+\begin{table}[ht]
     \centering
-        \begin{tabular}{lllll}
+    \caption{ROC AUC of model with all 57 features, and 7 features.}
+    \label{tab:table_rocauc_feature_selection}
+    \begin{tabular}{llll}
         \toprule
-         & Model ROCAUC (\%) & &ROCAUC captured (\%)\\ 
-%         \midrule
-%        \toprule
-         mRS range & All features & 7 features & by 7 feature model\\ 
-         \midrule
-        mRS 0 & 90.8  & 85.3 & 93.9\\ 
-        mRS 0-1 & 89.4  & 85.2 & 95.3\\
-        mRS 0-2 & 91.1  & 87.6 & 96.2\\
-        mRS 0-3 & 92.5  & 89.0 & 96.2\\
-        mRS 0-4 & 93.5  & 89.3 & 95.5\\
-        mRS 0-5 & 92.6  & 86.8 & 93.7\\
+         & \multicolumn{2}{c}{Model ROC AUC (\%)} & ROC AUC captured (\%) \\
+        mRS range & All features & 7 features & by 7 feature model \\
+        \midrule
+        mRS 0   & 90.8 & 85.3 & 93.9 \\
+        mRS 0-1 & 89.4 & 85.2 & 95.3 \\
+        mRS 0-2 & 91.1 & 87.6 & 96.2 \\
+        mRS 0-3 & 92.5 & 89.0 & 96.2 \\
+        mRS 0-4 & 93.5 & 89.3 & 95.5 \\
+        mRS 0-5 & 92.6 & 86.8 & 93.7 \\
         \bottomrule
-        \end{tabular}
-      \caption{ROC AUC of model with all 57 features, and 7 features.}
-      \label{fig:table_rocauc_feature_selection}
+    \end{tabular}
+\end{table}
 
-\end{figure}
+\clearpage
 
-\begin{figure}[!h]
-    \centering
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/073_xgb_all_features_5fold_binary_confusion_matrices_per_binary_threshold_kfold0}\\
-      \caption{Kfold 1}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{1\textwidth}
-      \centering    
-      \includegraphics[width=1\textwidth]{./images/073_xgb_all_features_5fold_binary_confusion_matrices_per_binary_threshold_kfold1}\\
-      \caption{Kfold 2}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/073_xgb_all_features_5fold_binary_confusion_matrices_per_binary_threshold_kfold2}\\
-      \caption{Kfold 3}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/073_xgb_all_features_5fold_binary_confusion_matrices_per_binary_threshold_kfold3}\\
-      \caption{Kfold 4}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/073_xgb_all_features_5fold_binary_confusion_matrices_per_binary_threshold_kfold4}\\
-      \caption{Kfold 5}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-  \caption{Confusion matrices for each kfold (model with all features)}
-\end{figure}
+\section{Receiver Operating Characteristic and Sensitivity/Specificity curves }
 
-\begin{figure}[!ht]
-\centering
-    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/073_xgb_all_features_5fold_binary_roc_sens_spec_mrs0_kfold0_paper}}
-\hfil
-    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/073_xgb_all_features_5fold_binary_roc_sens_spec_mrs1_kfold0_paper}}
-
-    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/073_xgb_all_features_5fold_binary_roc_sens_spec_mrs2_kfold0_paper}}
-\hfil
-    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/073_xgb_all_features_5fold_binary_roc_sens_spec_mrs3_kfold0_paper}}
-
-    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/073_xgb_all_features_5fold_binary_roc_sens_spec_mrs4_kfold0_paper}}
-\hfil
-    \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/073_xgb_all_features_5fold_binary_roc_sens_spec_mrs5_kfold0_paper}}
-    \label{fig:rocauc_ss_all_features}
-  \caption{ROC AUC, and specificity and sensitivity plots for each of the mRS threshold levels to define a good outcome (for first kfold). All features as model inputs.}
-
-\end{figure}
-
-
-
-\subsection{Model accuracy}
-
-
-Figure \ref{fig:feature_selection} shows the mean ROCAUC for the 5 kfold model, sequentially selecting the features.
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.75\textwidth]{./images/020_feature_selection.jpg}\\
-    \caption{Feature selection}
-    \label{fig:feature_selection}
-\end{figure}
-
-{ROCAUC}
-
-Figure \ref{fig:confusion_rocauc} shows the ROCAUC results for the individual one vs one classes. There is a better performance for classes to be distiguishable when they are further from each other in value. 
-
-\begin{figure}
-    \centering
-    {\includegraphics[width = 4in]{./images/040_ROCAUC_confusion_matrix_ovo.png}}\\
-    \caption{}
-    \label{fig:confusion_rocauc}
-\end{figure}
-
-Figure \ref{fig:confusion_mrs} shows the confusion matrices for the 5 kfolds. Given the consistency across the 5 kfolds, we will now only use results from the first kfold.
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[trim={0 0 0 1.2cm}, clip, width=1\textwidth]{./images/040_confusion_matrices_5fold.png}\\
-    \caption{}
-    \label{fig:confusion_mrs}
-\end{figure}
-
-
-\section{Method}
-
-\subsection{Data}
-
-Data were retrieved for 168,347 emergency stroke admissions to acute stroke teams in England for six years, 2016–2021 (inclusive), obtained from the Sentinel Stroke National Audit Programme (SSNAP). Data fields were provided for the hyper-acute phase of the stroke pathway, up to and including our target feature: disability on inpatient discharge. Disability is recorded in the SSNAP dataset using the modified Rankin Scale (mRS), where mRS 0 represents perfect health and mRS 6 represents death. The data includes 118 acute stroke hospitals (each has at least 250 stroke admissions and delivers thrombolysis to at least 10 patients in the six years).
-
-\subsection{Machine learning models}
-
-\subsection{Model accuracy}
-
-\begin{figure}[!h]
-    \centering
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_confusion_matrices_per_binary_threshold_kfold0}\\
-      \caption{Kfold 1}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{1\textwidth}
-      \centering    
-      \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_confusion_matrices_per_binary_threshold_kfold1}\\
-      \caption{Kfold 2}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_confusion_matrices_per_binary_threshold_kfold2}\\
-      \caption{Kfold 3}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_confusion_matrices_per_binary_threshold_kfold3}\\
-      \caption{Kfold 4}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_confusion_matrices_per_binary_threshold_kfold4}\\
-      \caption{Kfold 5}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-  \caption{Confusion matrices for each kfold (model with 7 features)}
-\end{figure}
-
+Figure \ref{fig:rocauc_ss} shows Receiver Operating Characteristic and Sensitivity/Specificity curves for each of the mRS thresholds defining a `good' outcome.
 
 \begin{figure}[!ht]
 \centering
@@ -384,215 +240,55 @@ Data were retrieved for 168,347 emergency stroke admissions to acute stroke team
     \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/083_xgb_7_features_5fold_binary_roc_sens_spec_mrs4_kfold0_paper}}
 \hfil
     \subfloat[]{\includegraphics[width=0.5\linewidth]{./images/083_xgb_7_features_5fold_binary_roc_sens_spec_mrs5_kfold0_paper}}
-    \label{fig:rocauc_ss}
+
   \caption{ROC AUC, and specificity and sensitivity plots for each of the mRS threshold levels to define a good outcome (for first kfold). Model has 7 inputs features.}
+  \label{fig:rocauc_ss}
 
 \end{figure}
 
+\clearpage
+
+\section{SHAP}
+
+Figures \ref{fig:shap_violin_kfold1} to \ref{fig:shap_violin_kfold5} show SHAP values for each feature across five k-fold models.
 
 
 \begin{figure}[!h]
     \centering
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_0kfold}\\
-      \caption{Kfold 1}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-\end{figure}
-%    \hfill
-%    \medskip
-\begin{figure}[!h]\ContinuedFloat
-    \begin{subfigure}[b]{1\textwidth}
-      \centering    
-      \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_1kfold}\\
-      \caption{Kfold 2}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-\end{figure}
-%    \hfill
-%    \medskip
-\begin{figure}[!h]\ContinuedFloat
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_2kfold}\\
-      \caption{Kfold 3}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-\end{figure}
-%    \hfill
-%    \medskip
-\begin{figure}[!h]\ContinuedFloat
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_3kfold}\\
-      \caption{Kfold 4}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-\end{figure}
-%    \hfill
-%    \medskip
-\begin{figure}[!h]\ContinuedFloat
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_4kfold}\\
-      \caption{Kfold 5}
-      \label{fig:results_waterfall}
-    \end{subfigure}
-  \caption{Violin plots show SHAP values vs feature values for each feature, a sub figure for each kfold}
+    \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_0kfold}
+    \caption{Violin plots show SHAP values vs feature values for each feature: Kfold 1}
+    \label{fig:shap_violin_kfold1}
 \end{figure}
 
-
-
-%%%%%%%%%%%% 3.6.3  %%%%%%%%%%%%%%%%%
-\subsubsection{The direct contribution of thrombolysis use to the shift in probability of a good outcome - for all definitions of a good outcome (3.6.3 extension)}
-
-Using the counterfactual results for all of the patients in the first k-fold test set that received thrombolysis, figure \ref{fig:shap_shift_lvo_nlvo} shows a linear regression fitted to the shift in the contribution from receiving thrombolysis towards having a good outcome at discharge (mRS0-1) with respect to the onset to thrombolysis time. 
-
-Figures \ref{fig:stats_table_common_odds_ratio} and \ref{fig:stats_table_mrs1} show that the linear regression coefficients are statistically significant. Taking mRS 0-1 as a good outcome, we found that the effect of thrombolysis had declined to zero at 328 minutes, and the effect from thrombolysis was improving odds of a good outcome by 0.90 if it were, theoretically, given at the time of stroke onset. Figure \ref{fig:shap_shift_lvo} shows results for the patient cohort with a severe stroke severity (NIHSS 11+). Figure \ref{fig:shap_shift_nlvo} shows results for the patient cohort with a mild-moderate stroke severity (NIHSS 0-10). Linear regression coefficients in both groups were statistically significant (figures \ref{fig:stats_table_common_odds_ratio} and \ref{fig:stats_table_mrs1}). We observed that the maximum theoretical effect of thrombolysis (if given at time of stroke onset) was greater for the severe stroke group (1.048 log odds for mRS0-1) than the mild-moderate stroke group (0.771 log odds for mRS0-1). However the effect of thrombolysis declined a little faster in the severe stroke group (reaching no effect at 314 minutes, compared to 351 minutes for mild-moderate stroke patients).
-
-\begin{figure}[!ht]
+\begin{figure}[!h]
     \centering
-    \begin{subfigure}[b]{.7\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/103_xgb_7_features_1fold_binary_improvement_logodds_bymRSthreshold_sns_6_subplots_nLVO_LVO_ivt_shap_paper}\\
-      \caption{Patients in the test set that received thrombolysis}
-      \label{fig:shap_shift_lvo_nlvo}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{.7\textwidth}
-      \centering    
-      \includegraphics[width=1\textwidth]{./images/103_xgb_7_features_1fold_binary_improvement_logodds_bymRSthreshold_sns_6_subplots_LVO_ivt_shap_paper}\\
-      \caption{Patients in the test set that received thrombolysis with severe stroke (NIHSS 11+)}
-      \label{fig:shap_shift_lvo}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{.7
-    \textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/103_xgb_7_features_1fold_binary_improvement_logodds_bymRSthreshold_sns_6_subplots_nLVO_ivt_shap_paper}\\
-      \caption{Patients in the test set that received thrombolysis with mild-moderate stroke (NIHSS 0-10)}
-      \label{fig:shap_shift_nlvo}
-    \end{subfigure}
-    \label{fig:shap_shift}
-    \caption{Fitting linear regression to the shift in the contribution from receiving thrombolysis towards having a good outcome at discharge with respect to the onset to thrombolysis time. A subplot for each mRS threshold used to define a good outcome.}
+    \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_1kfold}
+    \caption{Violin plots show SHAP values vs feature values for each feature: Kfold 2}
+    \label{fig:shap_violin_kfold2}
 \end{figure}
 
-\begin{table}[!ht]
-    \caption{Fitting linear regression to the shift in the contribution from receiving thrombolysis towards having a good outcome (mRS 0-1) at discharge with respect to the onset to thrombolysis time. Linear regression statistics for different patient cohorts, and different definitions of a good outcome. We used NIHSS 0-10 to define mild-moderate strokes, and NIHSS 11+ to define severe strokes. }
-%    \begin{subtable}[b]{1\textwidth}
-%          \caption{Good outcome defined using all six mRS thresholds (common odds ratio).}
-%    \centering
-%        \begin{tabular}{lllllllll}
-%        \toprule
-%         & Variables & coef & std err & t & P$>$$|$t$|$ & [0.025 & 0.975] \\ 
-%         \midrule
-%        All ischaemic stroke & Constant  & 0.8596 & 0.004 & 202.579 & 0.000 & 0.851 & 0.868\\
-%        & Onset to IVT time (mins) & -0.0031 & 2.52e-05 & -122.600 & 0.000 & -0.003 & -0.003\\ 
-%        \midrule
-%        Severe stroke & Constant  & 0.9971  &    0.006 &   174.202  &    0.000    &   0.986   &    1.008\\
-%        & Onset to IVT time (mins) & -0.0027  &  3.3e-05 &   -83.259  &    0.000   &   -0.003    &  -0.003\\ \midrule
- %       Mild-moderate stroke & Constant & 0.7245 & 0.006 & 126.085 & 0.000 & 0.713 & 0.736\\
- %       & Onset to IVT time (mins)  &  -0.0026 &  3.33e-05 &   -78.747  &    0.000 &     -0.003  &    -0.003\\
- %       \bottomrule
- %       \end{tabular}
-
- %     \label{fig:stats_table_common_odds_ratio}
- %   \end{subtable}
- %   \par\bigskip % force a bit of vertical whitespace
-%    \begin{subtable}[b]{1\textwidth}
-%    \caption{Good outcome defined as mRS 0-1.}
+\begin{figure}[!h]
     \centering
-        \begin{tabular}{lllllllll}
-        \toprule
-         & Variables & coef & std err & t & P$>$$|$t$|$ & [0.025 & 0.975] \\ 
-         \midrule
-        All ischaemic stroke & Constant & 0.9012 & 0.007 & 132.519 & 0.000 & 0.888 & 0.915\\
-        & Onset to IVT time (min) &  -0.0027  & 4.04e-05 & -68.058 & 0.000 & -0.003 & -0.003\\   
-        \midrule
-        Severe stroke & Constant & 1.0476  &    0.011  & 96.746 & 0.000 & 1.026 & 1.069\\
-        & Onset to IVT time (mins) & -0.0033 &  6.67e-05  & -50.042 & 0.000 & -0.003 & -0.003\\ 
-        \midrule
-        Mild-moderate stroke & Constant &           0.7708 &     0.008   & 97.613 & 0.000 & 0.755 & 0.786\\
-        & Onset to IVT time (mins) &  -0.0022 &   4.57e-05 & -48.109 & 0.000 & -0.002 & -0.002\\
-        \bottomrule
-        \end{tabular}
+    \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_2kfold}
+    \caption{Violin plots show SHAP values vs feature values for each feature: Kfold 3}
+    \label{fig:shap_violin_kfold3}
+\end{figure}
 
-      \label{fig:stats_table_mrs1}
-%    \end{subtable}
-   
-\end{table}
-
-
-Here is the secondary analysis that repeats the analysis in the paper that uses the full log-odds change in achieving a given mRS threshold with and without thrombolysis (instead of the log-odds change associated with the thrombolysis use feature). Using the full model prediction, rather than isolating the effect of thrombolysis using thrombolysis SHAP, produced similar results, but with a little larger predicted effect of thrombolysis (e.g  maximum theoretical beneficial of thrombolysis of improving the log odds of being discharged mRS 0-2 of 1.1 (\textit{c.f.} 0.90 when using the isolated effect of thrombolysis from the thrombolysis SHAP values, with no-effect time being 328 minutes and 334 minutes for the isolated and full effect models).
-
-\begin{figure}[!ht]
+\begin{figure}[!h]
     \centering
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/103_xgb_7_features_1fold_binary_improvement_logodds_bymRSthreshold_sns_6_subplots_nLVO_LVO_total_shap_paper}\\
-      \caption{Patients in the test set that received thrombolysis}
-      \label{fig:shap_shift_lvo_nlvo_full_model_prediction}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{1\textwidth}
-      \centering    
-      \includegraphics[width=1\textwidth]{./images/103_xgb_7_features_1fold_binary_improvement_logodds_bymRSthreshold_sns_6_subplots_LVO_total_shap_paper}\\
-      \caption{Patients in the test set that received thrombolysis with severe stroke (NIHSS 11+)}
-      \label{fig:shap_shift_lvo_full_model_prediction}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{1\textwidth}
-      \centering
-      \includegraphics[width=1\textwidth]{./images/103_xgb_7_features_1fold_binary_improvement_logodds_bymRSthreshold_sns_6_subplots_nLVO_total_shap_paper}\\
-      \caption{Patients in the test set that received thrombolysis with mild-moderate stroke (NIHSS 0-10)}
-      \label{fig:shap_shift_nlvo_full_model_prediction}
-    \end{subfigure}
-    \label{fig:shap_shift_full_model_prediction}
-    \caption{Fitting linear regression to the shift in the full model prediction from receiving thrombolysis towards having a good outcome at discharge with respect to the onset to thrombolysis time. A subplot for each mRS threshold used to define a good outcome.}
+    \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_3kfold}
+    \caption{Violin plots show SHAP values vs feature values for each feature: Kfold 4}
+    \label{fig:shap_violin_kfold4}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_4kfold}
+    \caption{Violin plots show SHAP values vs feature values for each feature: Kfold 5}
+    \label{fig:shap_violin_kfold5}
 \end{figure}
 
 
-\begin{table}[!ht]
-%    \begin{subfigure}[b]{1\textwidth}
-%    \centering
-%        \begin{tabular}{lllllllll}
-%        \toprule
-%         & Variables & coef & std err & t & P$>$$|$t$|$ & [0.025 & 0.975] \\ 
-%         \midrule
-%        All ischaemic stroke & Constant  & 1.0387 & 0.008 & 138.005 & 0.000 & 1.024 & 1.053\\
-%        & Onset to IVT time (mins) & -0.0036 & 4.47e-05 & -79.727 & 0.000 & -0.004 & -0.003\\ 
-%        \midrule
-%        Severe stroke & Constant  & 1.2973  &    0.011 &   119.862  &    0.000    &   1.276 & 1.319\\
-%        & Onset to IVT time (mins) & -0.0042  &  6.67e-05 &   -63.065  &    0.000   &   -0.004    &  -0.004\\ \midrule
-%        Mild-moderate stroke & Constant & 0.7803 & 0.010 & 80.932 & 0.000 & 0.761 & 0.799\\
-%        & Onset to IVT time (mins)  &  -0.0027 &  5.58e-05 &   -48.286  &    0.000 &     -0.003  &    -0.003\\
-%        \bottomrule
-%        \end{tabular}
-%      \caption{Good outcome defined using all six mRS thresholds (common odds ratio).}
-%      \label{fig:stats_table_common_odds_ratio_full_model_prediction}
-%    \end{subfigure}
-%    \par\bigskip % force a bit of vertical whitespace
-%    \begin{subfigure}[b]{1\textwidth}
-    \centering
-        \begin{tabular}{lllllllll}
-        \toprule
-         & Variables & coef & std err & t & P$>$$|$t$|$ & [0.025 & 0.975] \\ 
-         \midrule
-        All ischaemic stroke & Constant & 1.0992 & 0.016 & 68.965 & 0.000 & 1.068 & 1.130\\
-        & Onset to IVT time (min) &  -0.0033  & 9.46e-05 & -34.778 & 0.000 & -0.003 & -0.003\\   
-        \midrule
-        Severe stroke & Constant & 1.3797  & 0.027  & 51.601 & 0.000 & 1.327 & 1.432\\
-        & Onset to IVT time (mins) & -0.0044 &  0.000  & -26.845 & 0.000 & -0.005 & -0.004\\ 
-        \midrule
-        Mild-moderate stroke & Constant &           0.8494 & 0.018   & 46.756 & 0.000 & 0.814 & 0.885\\
-        & Onset to IVT time (mins) &  -0.0022 &   0.000 & -21.301 & 0.000 & -0.002 & -0.002\\
-        \bottomrule
-        \end{tabular}
-      \label{fig:stats_table_mrs1_full_model_prediction}
-%    \end{subfigure}
-    \caption{Fitting linear regression to the shift in the full model prediction from receiving thrombolysis towards having a good outcome (mRS 0-1) at discharge with respect to the onset to thrombolysis time. Linear regression statistics for different patient cohorts, and different definitions of a good outcome. We used NIHSS 11+ to define a severe stroke, and NIHSS 0-10 to define mild-moderate stroke.}
-\end{table}
 
 %\FloatBarrier
 %TC:endignore
