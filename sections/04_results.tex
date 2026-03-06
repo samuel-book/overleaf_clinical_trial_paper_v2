@@ -53,13 +53,15 @@ Features affecting choice of thrombolysis have previously been described \cite{p
 
 \begin{figure}[!h]
     \centering%\captionsetup{width=.8\linewidth}%
-      \includegraphics[width=0.95\linewidth]{./images_main/thrombolysis_dag.png}\\
+      \includegraphics[width=0.95\linewidth]{./images_main/fig_1_thrombolysis_dag.png}\\
   \caption{A Directed Acyclic Graph (`DAG') showing the proposed causal relationships in propensity to use thrombolysis and outcome after stroke with or without thrombolysis.}
     \label{fig:dag}
 \end{figure}
 
-In order to isolate the effect of thrombolysis appropriately, we predicted outcome based on use/time to thrombolysis, and 6 factors identified as confounding variables (affecting both outcome directly and propensity to use thrombolysis).
+\begin{minipage}{1.0\textwidth}
 
+In order to isolate the effect of thrombolysis appropriately, we predicted outcome based on use/time to thrombolysis, and 6 factors identified as confounding variables (affecting both outcome directly and propensity to use thrombolysis).
+    
 \begin{enumerate}
     \item Onset to thrombolysis time: Time from onset to receiving thrombolysis (minutes). This was set to 9,999 if the patient did not receive thrombolysis.
     \item Prior disability level: mRS before stroke
@@ -69,6 +71,7 @@ In order to isolate the effect of thrombolysis appropriately, we predicted outco
     \item Atrial fibrillation diagnosis: Patient had a diagnosis of atrial fibrillation (either on arrival or diagnosed during admission)
     \item Precise onset known: Onset time recorded was recorded as being precise time (as opposed to a best estimate)
 \end{enumerate}
+\end{minipage}
 
 \subsection{Model accuracy}
 
@@ -76,37 +79,18 @@ With these seven input features, the overall accuracy ranged from 77. 6\% to 89.
 
 \subsection{SHAP patterns}
 
-SHAP values were calculated for each feature for each patient, showing how each value affects the log odds of achieving a good outcome at discharge. For each patient in the test set we extracted SHAP values for each feature with its corresponding feature value. Figure \ref{fig:global_shap_mrs1} shows the relationship between feature values and the odds of a patient having an excellent outcome (mRS 0-1) at discharge (a positive SHAP value contributes to an increased likelihood, and a negative SHAP value contributes to a reduced likelihood). We found that low prior disability, lower stroke severity, younger age, receiving thrombolysis (and receiving it sooner after onset), and having no diagnosis of atrial fibrillation contributed to a patient more likely having an excellent outcome at discharge. Figure \ref{fig:global_shap_ott} focusses on the feature \textit{onset to thrombolysis time}, and its effect on reaching any disability threshold. As time from onset to treatment increased, the beneficial effect of thrombolysis decayed. For thresholds up to, and including, mRS 3, the median effect of thrombolysis remained positive, compared to not receiving thrombolysis, up until the maximum time of 720 minutes. For thresholds of mRS 4 and upwards, the median effect of thrombolysis became negative at longer onset-to-treatment times. This was especially apparent in how thrombolysis changed the overall odds of survival (mRS 0-5) where the median effect of thrombolysis became negative from about 155 minutes. Later thrombolysis may therefore increase the proportion of patients attaining mRS 0-3, but at the cost of some reduction in overall survival. Earlier thrombolysis improved the odds of survival. Figure \ref{fig:global_shap_hosp} shows the contribution from attending a specific hospital to predicting whether the patient had a good outcome at discharge, for each of the mRS threshold levels used to define a good outcome. As the threshold for having a good outcome becomes more inclusive of higher disability levels, the effect of the hospital attended had a reduced contribution. In other words, the hospital attended made a greater contribution to variation in outcome with thrombolysis for patients with lesser degrees of disability after treatment.
+SHAP values were calculated for each feature for each patient, showing how each value affects the log odds of achieving a good outcome at discharge. For each patient in the test set we extracted SHAP values for each feature with its corresponding feature value. Figure \ref{fig:shap}a shows the relationship between feature values and the odds of a patient having an excellent outcome (mRS 0-1) at discharge (a positive SHAP value contributes to an increased likelihood, and a negative SHAP value contributes to a reduced likelihood). We found that low prior disability, lower stroke severity, younger age, receiving thrombolysis (and receiving it sooner after onset), and having no diagnosis of atrial fibrillation contributed to a patient more likely having an excellent outcome at discharge. Figure \ref{fig:shap}b focusses on the feature \textit{onset to thrombolysis time}, and its effect on reaching any disability threshold. As time from onset to treatment increased, the beneficial effect of thrombolysis decayed. For thresholds up to, and including, mRS 3, the median effect of thrombolysis remained positive, compared to not receiving thrombolysis, up until the maximum time of 720 minutes. For thresholds of mRS 4 and upwards, the median effect of thrombolysis became negative at longer onset-to-treatment times. This was especially apparent in how thrombolysis changed the overall odds of survival (mRS 0-5) where the median effect of thrombolysis became negative from about 155 minutes. Later thrombolysis may therefore increase the proportion of patients attaining mRS 0-3, but at the cost of some reduction in overall survival. Earlier thrombolysis improved the odds of survival. Figure \ref{fig:shap}c shows the contribution from attending a specific hospital to predicting whether the patient had a good outcome at discharge, for each of the mRS threshold levels used to define a good outcome. As the threshold for having a good outcome becomes more inclusive of higher disability levels, the effect of the hospital attended had a reduced contribution. In other words, the hospital attended made a greater contribution to variation in outcome with thrombolysis for patients with lesser degrees of disability after treatment.
 
 
 %%%%%%%% PUT ON SEPARATE A4 PAGE LANDSCAPE %%%%%%%%%%%
 
+
+
 %\begin{sidewaysfigure}[!ht]
 \begin{figure}[!ht]
-    \centering
-    \begin{subfigure}[b]{0.8\textwidth}
-      \centering
-      \includegraphics[trim={0 0 0 1.2cm}, clip, width=1\textwidth]{./images_main/083_xgb_7_features_5fold_binary_shap_violin_mrs1_0kfold}\\
-      \caption{The relationship between feature values and the prediction of whether a patient will have an excellent outcome (mRS 0-1) at discharge. SHAP base value for this model is -1.529.}
-      \label{fig:global_shap_mrs1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.8\textwidth}
-      \centering    
-      \includegraphics[width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_onset_to_thrombolysis_time_0kfold.jpg}\\
-%      \includegraphics[trim={0 0 0 1.2cm}, clip, width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_shap_violin_ss_0kfold}\\
-      \caption{The relationship between onset to thrombolysis time and the prediction of whether a patient will have a good outcome at discharge, for each of the mRS scores used to define a good outcome.}
-      \label{fig:global_shap_ott}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.8\textwidth}
-      \centering
-      \includegraphics[trim={0 0 0 1.2cm}, clip, width=1\textwidth]{./images/083_xgb_7_features_5fold_binary_hosp_shap_hist_mrs_0kfold}\\
-      \caption{The contribution from attending a specific hospital to predicting whether the patient will have a good outcome at discharge, for each of the mRS scores used to define a good outcome}
-      \label{fig:global_shap_hosp}
-    \end{subfigure}
-    \label{fig:global_shap}
-  \caption{The relationship between feature values and SHAP values in predicting whether a patient will have a good outcome at discharge, for each of the mRS scores used to define a good outcome. Violin plots show the distribution of SHAP values across the patient population for each feature value, with the mid-line showing the median SHAP value.} 
+  \includegraphics[width=1.0\textwidth]{./images_main/fig_2_shap}\\
+  \caption{The relationship between feature values and SHAP values in predicting whether a patient will have a good outcome at discharge, for each of the mRS scores used to define a good outcome. Violin plots show the distribution of SHAP values across the patient population for each feature value, with the mid-line showing the median SHAP value.}
+  \label{fig:shap}
 \end{figure}
 
 
@@ -116,7 +100,7 @@ Using the counterfactual results for all of the patients in the first k-fold tes
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.45\textwidth]{./images_main/103_xgb_7_features_1fold_binary_improvement_logodds_mrs0_1_sns_subplots_ivt_shap_paper}\\
+    \includegraphics[width=0.45\textwidth]{./images_main/fig_3_linear_reg}\\
     \caption{Linear regression of thrombolysis contribution to excellent outcome (mRS 0–1) at discharge as a function of onset-to-treatment time (OTT) in patients treated within 300 minutes. Top: all treated stroke patients (n = 6,796); Middle: severe stroke patients (NIHSS 11+; n = 2,856); Bottom: mild-moderate stroke patients (NIHSS 0–10; n = 3,940).}
     \label{fig:linear_regression_plots}
 \end{figure}
@@ -125,8 +109,6 @@ Using the counterfactual results for all of the patients in the first k-fold tes
 
 \begin{table}[!ht]
     \caption{Linear regression of the relationship between onset-to-treatment time (OTT) and the improvement in log-odds of achieving an excellent outcome (mRS 0-1), stratified by stroke severity.}
-
-    Linear regression of the change in thrombolysis contribution to excellent outcome at discharge as a function of onset-to-treatment time (OTT), stratified by stroke severity (mild-moderate: NIHSS 0–10; severe: NIHSS 11+).
     \centering
     \begin{tabular}{lllllllll}
     \toprule
