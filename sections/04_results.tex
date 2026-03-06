@@ -100,8 +100,8 @@ Using the counterfactual results for all of the patients in the first k-fold tes
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.45\textwidth]{./images_main/fig_3_linear_reg}\\
-    \caption{Linear regression of thrombolysis contribution to excellent outcome (mRS 0–1) at discharge as a function of onset-to-treatment time (OTT) in patients treated within 300 minutes. Top: all treated stroke patients (n = 6,796); Middle: severe stroke patients (NIHSS 11+; n = 2,856); Bottom: mild-moderate stroke patients (NIHSS 0–10; n = 3,940).}
+    \includegraphics[width=1.0\textwidth]{./images_main/fig_3_linear_reg}\\
+    \caption{Linear regression of thrombolysis contribution to excellent outcome (mRS 0–1) at discharge as a function of onset-to-treatment time (OTT) in patients treated within 300 minutes. Left: all treated stroke patients (n = 6,796); Middle: severe stroke patients (NIHSS 11+; n = 2,856); Right: mild-moderate stroke patients (NIHSS 0–10; n = 3,940).}
     \label{fig:linear_regression_plots}
 \end{figure}
 
@@ -117,11 +117,11 @@ Using the counterfactual results for all of the patients in the first k-fold tes
     All & Constant & 0.901 & 0.007 & 0.888 & 0.915 & 132.5 & 0.000 \\
         & OTT (min) coef & -0.0027 & 4.04e-05 & -0.003 & -0.003 & -68.1 & 0.000 \\
     \midrule
-    Mild-moderate & Constant & 0.771 & 0.008 & 0.755 & 0.786 & 97.6 & 0.000 \\
-    (NIHSS 0-10) & OTT (mins) coef & -0.0022 & 4.57e-05 & -0.002 & -0.002 & -48.1 & 0.000 \\
-    \midrule
     Severe & Constant & 1.048 & 0.011 & 1.026 & 1.069 & 96.7 & 0.000 \\
     NIHSS 11+ & OTT (mins) coef & -0.0033 & 6.67e-05 & -0.003 & -0.003 & -50.0 & 0.000 \\
+    \midrule
+    Mild-moderate & Constant & 0.771 & 0.008 & 0.755 & 0.786 & 97.6 & 0.000 \\
+    (NIHSS 0-10) & OTT (mins) coef & -0.0022 & 4.57e-05 & -0.002 & -0.002 & -48.1 & 0.000 \\
     \bottomrule
     \end{tabular}
     \label{tab:stats_table_mrs1}
