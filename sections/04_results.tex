@@ -30,7 +30,7 @@ Arrive by ambulance & 41161 & 0.92 (NA) & NA & 315934 & 0.77 (NA) & NA \\
 Arrival to scan time & 41163 & 23 (20) & 19 (11-29) & 315941 & 217 (2016) & 61 (26-149) \\
 Congestive heart failure & 41163 & 0.04 (NA) & NA & 315941 & 0.05 (NA) & NA \\
 Hypertension & 41163 & 0.51 (NA) & NA & 315941 & 0.55 (NA) & NA \\
-Atrial fibrillation & 41163 & 0.12 (NA) & NA & 315941 & 0.19 (NA) & NA \\
+Atrial fibrillation (Afib) & 41163 & 0.12 (NA) & NA & 315941 & 0.19 (NA) & NA \\
 New afib diagnosis & 24485 & 0.11 (NA) & NA & 172727 & 0.06 (NA) & NA \\
 Diabetes & 41163 & 0.17 (NA) & NA & 315941 & 0.22 (NA) & NA \\
 Prior stroke tia & 41163 & 0.20 (NA) & NA & 315941 & 0.26 (NA) & NA \\
@@ -76,7 +76,7 @@ With these seven input features, the overall accuracy ranged from 77. 6\% to 89.
 
 \subsection{SHAP patterns}
 
-SHAP values were calculated for each feature for each patient, showing how each value affects the log odds of achieving a good outcome at discharge. For each patient in the test set we extracted SHAP values for each feature with its corresponding feature value. Figure \ref{fig:global_shap_mrs1} shows the relationship between feature values and the odds of a patient having an excellent outcome (mRS 0-1) at discharge (a positive SHAP value contributes to an increased likelihood, and a negative SHAP value contributes to a reduced likelihood). We found that low prior disability, lower stroke severity, younger age, receiving thrombolysis (and receiving it sooner after onset), and having no diagnosis of atrial fibrillation contributed to a patient more likely having an excellent outcome at discharge. Figure \ref{fig:global_shap_ott} focusses on the feature \textit{onset to thrombolysis time}, and its effect on reaching any disability threshold. As time from onset to treatment increased, the beneficial effect of thrombolysis decayed. For thresholds up to, and including, mRS 3, the median effect of thrombolysis remained positive, compared to not receiving thrombolysis, up until the maximum time of 720 minutes. For thresholds of mRS 4 and upwards, the median effect of thrombolysis became negative at longer onset-to-treatment times. This was especially apparent in how thrombolysis changed the overall odds of survival (mRS 0-5) where the median effect of thrombolysis became negative from about 155 minutes. Later thrombolysis may therefore increase the proportion of patients attaining mRS 0-3, but at the cost of some reduction in overall survival. Earlier thrombolysis improved the odds of survival. Figure \ref{fig:global_shap_hosp} shows the contribution from attending a specific hospital to predicting whether the patient had an e outcome at discharge, for each of the mRS threshold levels used to define a good outcome. As the threshold for having a good outcome becomes more inclusive of higher disability levels, the effect of the hospital attended had a reduced contribution. In other words, the hospital attended made a greater contribution to variation in outcome with thrombolysis for patients with lesser degrees of disability after treatment.
+SHAP values were calculated for each feature for each patient, showing how each value affects the log odds of achieving a good outcome at discharge. For each patient in the test set we extracted SHAP values for each feature with its corresponding feature value. Figure \ref{fig:global_shap_mrs1} shows the relationship between feature values and the odds of a patient having an excellent outcome (mRS 0-1) at discharge (a positive SHAP value contributes to an increased likelihood, and a negative SHAP value contributes to a reduced likelihood). We found that low prior disability, lower stroke severity, younger age, receiving thrombolysis (and receiving it sooner after onset), and having no diagnosis of atrial fibrillation contributed to a patient more likely having an excellent outcome at discharge. Figure \ref{fig:global_shap_ott} focusses on the feature \textit{onset to thrombolysis time}, and its effect on reaching any disability threshold. As time from onset to treatment increased, the beneficial effect of thrombolysis decayed. For thresholds up to, and including, mRS 3, the median effect of thrombolysis remained positive, compared to not receiving thrombolysis, up until the maximum time of 720 minutes. For thresholds of mRS 4 and upwards, the median effect of thrombolysis became negative at longer onset-to-treatment times. This was especially apparent in how thrombolysis changed the overall odds of survival (mRS 0-5) where the median effect of thrombolysis became negative from about 155 minutes. Later thrombolysis may therefore increase the proportion of patients attaining mRS 0-3, but at the cost of some reduction in overall survival. Earlier thrombolysis improved the odds of survival. Figure \ref{fig:global_shap_hosp} shows the contribution from attending a specific hospital to predicting whether the patient had a good outcome at discharge, for each of the mRS threshold levels used to define a good outcome. As the threshold for having a good outcome becomes more inclusive of higher disability levels, the effect of the hospital attended had a reduced contribution. In other words, the hospital attended made a greater contribution to variation in outcome with thrombolysis for patients with lesser degrees of disability after treatment.
 
 
 %%%%%%%% PUT ON SEPARATE A4 PAGE LANDSCAPE %%%%%%%%%%%
@@ -121,24 +121,28 @@ Using the counterfactual results for all of the patients in the first k-fold tes
 \end{figure}
 
 
+
 \begin{table}[!ht]
-    \caption{Linear regression of the change in thrombolysis contribution to excellent outcome at discharge as a function of onset-to-treatment time (OTT), stratified by stroke severity (mild-moderate: NIHSS 0–10; severe: NIHSS 11+).}
+    \caption{Linear regression of the relationship between onset-to-treatment time (OTT) and the improvement in log-odds of achieving an excellent outcome (mRS 0-1), stratified by stroke severity.}
+
+    Linear regression of the change in thrombolysis contribution to excellent outcome at discharge as a function of onset-to-treatment time (OTT), stratified by stroke severity (mild-moderate: NIHSS 0–10; severe: NIHSS 11+).
     \centering
-        \begin{tabular}{lllllllll}
-        \toprule
-         Ischaemic stroke type & Variables & coef & std err & t & P$>$$|$t$|$ & \makecell{Low 95\%\\confidence} & \makecell{High 95\%\\confidence }\\
-         \midrule
-        All & Constant & 0.9012 & 0.007 & 132.519 & 0.000 & 0.888 & 0.915\\
-        & OTT time (min) &  -0.0027  & 4.04e-05 & -68.058 & 0.000 & -0.003 & -0.003\\   
-        \midrule
-        Severe & Constant & 1.0476  &    0.011  & 96.746 & 0.000 & 1.026 & 1.069\\
-        & OTT time (mins) & -0.0033 &  6.67e-05  & -50.042 & 0.000 & -0.003 & -0.003\\ 
-        \midrule
-        Mild-moderate & Constant &           0.7708 &     0.008   & 97.613 & 0.000 & 0.755 & 0.786\\
-        & OTT (mins) &  -0.0022 &   4.57e-05 & -48.109 & 0.000 & -0.002 & -0.002\\
-        \bottomrule
-        \end{tabular}
-      \label{tab:stats_table_mrs1}
+    \begin{tabular}{lllllllll}
+    \toprule
+    Ischaemic stroke type & Variables & Estimate&  std err & \makecell{Low 95\%\\confidence} & \makecell{High 95\%\\confidence} & t & P$>$$|$t$|$ \\
+    \midrule
+    All & Constant & 0.901 & 0.007 & 0.888 & 0.915 & 132.5 & 0.000 \\
+        & OTT (min) coef & -0.0027 & 4.04e-05 & -0.003 & -0.003 & -68.1 & 0.000 \\
+    \midrule
+    Mild-moderate & Constant & 0.771 & 0.008 & 0.755 & 0.786 & 97.6 & 0.000 \\
+    (NIHSS 0-10) & OTT (mins) coef & -0.0022 & 4.57e-05 & -0.002 & -0.002 & -48.1 & 0.000 \\
+    \midrule
+    Severe & Constant & 1.048 & 0.011 & 1.026 & 1.069 & 96.7 & 0.000 \\
+    NIHSS 11+ & OTT (mins) coef & -0.0033 & 6.67e-05 & -0.003 & -0.003 & -50.0 & 0.000 \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:stats_table_mrs1}
 \end{table}
+
 
 \FloatBarrier
