@@ -5,7 +5,283 @@
 
 \section{Data}
 
-Data were retrieved for 168,347 emergency stroke admissions to acute stroke teams in England for six years, 2016–2021 (inclusive), obtained from the Sentinel Stroke National Audit Programme (SSNAP). The registry prospectively collects clinical data from 100\% of acute hospitals in England and Wales, with case ascertainment estimated at $>$90\% when compared with administrative coding data. Data fields were provided for the hyper-acute phase of the stroke pathway, up to and including our target feature: disability on inpatient discharge. Disability is recorded in the SSNAP dataset using the modified Rankin Scale (mRS), where mRS 0 represents perfect health and mRS 6 represents death. The data includes 118 acute stroke hospitals (each has at least 250 stroke admissions and delivers thrombolysis to at least 10 patients in the six year study period). Patients who went on to receive thrombectomy were excluded from the study (rates of thrombectomy recorded in SSNAP increased from 0.7\% to 2.0\% of all stroke during this period).  Data preparation prior to sharing by the national stroke registry restricts the description of age to within 5-year age bands.
+
+
+Data were retrieved for 168,347 emergency ischaemic stroke admissions, arriving by ambulance, at acute stroke teams in England for six years, 2016–2021 (inclusive), obtained from the Sentinel Stroke National Audit Programme (SSNAP). The registry prospectively collects clinical data from 100\% of acute hospitals in England and Wales, with case ascertainment estimated at $>$90\% when compared with administrative coding data. Data fields were provided for the hyper-acute phase of the stroke pathway, up to and including our target feature: disability on inpatient discharge. Disability is recorded in the SSNAP dataset using the modified Rankin Scale (mRS), where mRS 0 represents perfect health and mRS 6 represents death. The data includes 118 acute stroke hospitals (each has at least 250 stroke admissions and delivers thrombolysis to at least 10 patients in the six year study period). Patients who went on to receive thrombectomy were excluded from the study (rates of thrombectomy recorded in SSNAP increased from 0.7\% to 2.0\% of all stroke during this period).  Data preparation prior to sharing by the national stroke registry restricts the description of age to within 5-year age bands.
+
+\subsection{Data completion}
+
+Table \ref{tab:missing_all} shows data completion for all original data, and table \ref{tab:missing_ml} shows data used for machine learning study.
+
+\begin{longtable}{lrrrr}
+\caption{Data completeness for all data} \label{tab:data_summary} \\
+
+\toprule
+\textbf{Variable} & \textbf{Total Patients} & \textbf{Missing Values} & \textbf{Missing (\%)} & \textbf{Complete (\%)} \\
+\midrule
+\endfirsthead
+
+\multicolumn{5}{c}{\tablename\ \thetable{} -- \textit{continued from previous page}} \\
+\toprule
+\textbf{Variable} & \textbf{Total Patients} & \textbf{Missing Values} & \textbf{Missing (\%)} & \textbf{Complete (\%)} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{5}{r}{\textit{Continued on next page}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+PatientId & 360,381 & 0 & 0.000 & 100.000 \\
+ProClinV1Id & 360,381 & 0 & 0.000 & 100.000 \\
+TeamName & 360,381 & 0 & 0.000 & 100.000 \\
+AgeUnder40 & 360,381 & 0 & 0.000 & 100.000 \\
+Age40to44 & 360,381 & 0 & 0.000 & 100.000 \\
+Age45to49 & 360,381 & 0 & 0.000 & 100.000 \\
+Age50to54 & 360,381 & 0 & 0.000 & 100.000 \\
+Age55to59 & 360,381 & 0 & 0.000 & 100.000 \\
+Age60to64 & 360,381 & 0 & 0.000 & 100.000 \\
+Age65to69 & 360,381 & 0 & 0.000 & 100.000 \\
+Age70to74 & 360,381 & 0 & 0.000 & 100.000 \\
+Age75to79 & 360,381 & 0 & 0.000 & 100.000 \\
+Age80to84 & 360,381 & 0 & 0.000 & 100.000 \\
+Age85to89 & 360,381 & 0 & 0.000 & 100.000 \\
+AgeOver90 & 360,381 & 0 & 0.000 & 100.000 \\
+S1Gender & 360,381 & 0 & 0.000 & 100.000 \\
+OnsettoArrivalMinutes & 360,381 & 0 & 0.000 & 100.000 \\
+S1OnsetDateType & 360,381 & 0 & 0.000 & 100.000 \\
+S1OnsetTimeType & 360,381 & 0 & 0.000 & 100.000 \\
+S1ArriveByAmbulance & 360,381 & 0 & 0.000 & 100.000 \\
+FirstArrivalMonthYear & 360,381 & 0 & 0.000 & 100.000 \\
+FirstArrivalWeekday & 360,381 & 0 & 0.000 & 100.000 \\
+FirstArrivalTime & 360,381 & 0 & 0.000 & 100.000 \\
+S2CoMCongestiveHeartFailure & 360,381 & 0 & 0.000 & 100.000 \\
+S2CoMHypertension & 360,381 & 0 & 0.000 & 100.000 \\
+S2CoMAtrialFibrillation & 360,381 & 0 & 0.000 & 100.000 \\
+S2CoMDiabetes & 360,381 & 0 & 0.000 & 100.000 \\
+S2CoMStrokeTIA & 360,381 & 0 & 0.000 & 100.000 \\
+S2CoMAFAntiplatelet & 360,381 & 294,785 & 81.798 & 18.202 \\
+S2CoMAFAnticoagulent & 360,381 & 90,047 & 24.987 & 75.013 \\
+S2CoMAFAnticoagulentVitK & 360,381 & 112,376 & 31.183 & 68.817 \\
+S2CoMAFAnticoagulentDOAC & 360,381 & 112,376 & 31.183 & 68.817 \\
+S2CoMAFAnticoagulentHeparin & 360,381 & 112,376 & 31.183 & 68.817 \\
+S2INR & 360,381 & 351,875 & 97.640 & 2.360 \\
+S2INRHigh & 360,381 & 112,376 & 31.183 & 68.817 \\
+S2INRNK & 360,381 & 112,376 & 31.183 & 68.817 \\
+S2NewAFDiagnosis & 360,381 & 161,406 & 44.788 & 55.212 \\
+S2RankinBeforeStroke & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrival & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalLoc & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalLocQuestions & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalLocCommands & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalBestGaze & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalVisual & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalFacialPalsy & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalMotorArmLeft & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalMotorArmRight & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalMotorLegLeft & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalMotorLegRight & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalLimbAtaxia & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalSensory & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalBestLanguage & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalDysarthria & 360,381 & 0 & 0.000 & 100.000 \\
+S2NihssArrivalExtinctionInattention & 360,381 & 0 & 0.000 & 100.000 \\
+ArrivaltoBrainImagingMinutes & 360,381 & 1,388 & 0.385 & 99.615 \\
+S2StrokeType & 360,381 & 1,388 & 0.385 & 99.615 \\
+S2Thrombolysis & 360,381 & 0 & 0.000 & 100.000 \\
+S2ThrombolysisNoReason & 360,381 & 358,912 & 99.592 & 0.408 \\
+S2ThrombolysisNoButHaemorrhagic & 360,381 & 0 & 0.000 & 100.000 \\
+S2ThrombolysisNoButTimeWindow & 360,381 & 0 & 0.000 & 100.000 \\
+S2ThrombolysisNoButComorbidity & 360,381 & 0 & 0.000 & 100.000 \\
+S2ThrombolysisNoButMedication & 360,381 & 0 & 0.000 & 100.000 \\
+S2ThrombolysisNoButRefusal & 360,381 & 0 & 0.000 & 100.000 \\
+S2ThrombolysisNoButAge & 360,381 & 0 & 0.000 & 100.000 \\
+S2ThrombolysisNoButImproving & 360,381 & 0 & 0.000 & 100.000 \\
+S2ThrombolysisNoButTooMildSevere & 360,381 & 0 & 0.000 & 100.000 \\
+S2ThrombolysisNoButTimeUnknownWakeUp & 360,381 & 0 & 0.000 & 100.000 \\
+S2ThrombolysisNoButOtherMedical & 360,381 & 0 & 0.000 & 100.000 \\
+ArrivaltoThrombolysisMinutes & 360,381 & 319,218 & 88.578 & 11.422 \\
+S2TIAInLastMonth & 360,381 & 332,601 & 92.291 & 7.709 \\
+ArrivaltoArterialPunctureMinutes & 360,381 & 356,038 & 98.795 & 1.205 \\
+S7DischargeType & 360,381 & 2,469 & 0.685 & 99.315 \\
+ArrivalToDeathDays & 360,381 & 310,324 & 86.110 & 13.890 \\
+S7StrokeUnitDeath & 360,381 & 314,809 & 87.354 & 12.646 \\
+S7RankinDischarge & 360,381 & 2,576 & 0.715 & 99.285 \\
+S8Rankin6Month & 360,381 & 250,658 & 69.554 & 30.446 \\
+S8Rankin6MonthNK & 360,381 & 133,399 & 37.016 & 62.984 \\
+CallConnectedtoArrivalMinutes & 360,381 & 251,896 & 69.897 & 30.103 \\
+ArrivalPatientLocationtoArrivalMinutes & 360,381 & 251,900 & 69.898 & 30.102 \\
+DeparturePatientLocationtoArrivalMinutes & 360,381 & 251,991 & 69.923 & 30.077 \\
+WheelsStoptoArrivalMinutes & 360,381 & 267,405 & 74.201 & 25.799 \\
+MobileDatatoArrivalMinutes & 360,381 & 344,310 & 95.541 & 4.459 \\
+S1PreHospitalImpression & 360,381 & 252,031 & 69.935 & 30.065 \\
+\label{tab:missing_all}
+\end{longtable}
+
+
+\begin{longtable}{lrrrr}
+\caption{Data completeness for restricted machine learning data set} \label{tab:data_summary} \\
+
+\toprule
+\textbf{Variable} & \textbf{Total Patients} & \textbf{Missing Values} & \textbf{Missing (\%)} & \textbf{Complete (\%)} \\
+\midrule
+\endfirsthead
+
+\multicolumn{5}{c}{\tablename\ \thetable{} -- \textit{continued from previous page}} \\
+\toprule
+\textbf{Variable} & \textbf{Total Patients} & \textbf{Missing Values} & \textbf{Missing (\%)} & \textbf{Complete (\%)} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{5}{r}{\textit{Continued on next page}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+id & 168,347 & 0 & 0.000 & 100.000 \\
+stroke\_team & 168,347 & 0 & 0.000 & 100.000 \\
+age & 168,347 & 0 & 0.000 & 100.000 \\
+male & 168,347 & 0 & 0.000 & 100.000 \\
+onset\_to\_arrival\_time & 168,347 & 0 & 0.000 & 100.000 \\
+precise\_onset\_known & 168,347 & 0 & 0.000 & 100.000 \\
+onset\_during\_sleep & 168,347 & 0 & 0.000 & 100.000 \\
+month & 168,347 & 0 & 0.000 & 100.000 \\
+year & 168,347 & 0 & 0.000 & 100.000 \\
+weekday & 168,347 & 0 & 0.000 & 100.000 \\
+arrival\_time\_3\_hour\_period & 168,347 & 0 & 0.000 & 100.000 \\
+arrival\_to\_scan\_time & 168,347 & 0 & 0.000 & 100.000 \\
+scan\_to\_thrombolysis\_time & 168,347 & 0 & 0.000 & 100.000 \\
+congestive\_heart\_failure & 168,347 & 0 & 0.000 & 100.000 \\
+hypertension & 168,347 & 0 & 0.000 & 100.000 \\
+atrial\_fibrillation & 168,347 & 0 & 0.000 & 100.000 \\
+diabetes & 168,347 & 0 & 0.000 & 100.000 \\
+prior\_stroke\_tia & 168,347 & 0 & 0.000 & 100.000 \\
+afib\_antiplatelet & 168,347 & 0 & 0.000 & 100.000 \\
+afib\_anticoagulant & 168,347 & 0 & 0.000 & 100.000 \\
+new\_afib\_diagnosis & 168,347 & 0 & 0.000 & 100.000 \\
+any\_afib\_diagnosis & 168,347 & 0 & 0.000 & 100.000 \\
+prior\_disability & 168,347 & 0 & 0.000 & 100.000 \\
+stroke\_severity & 168,347 & 0 & 0.000 & 100.000 \\
+nihss\_complete & 168,347 & 0 & 0.000 & 100.000 \\
+nihss\_arrival\_loc & 168,347 & 0 & 0.000 & 100.000 \\
+nihss\_arrival\_loc\_questions & 168,347 & 2,802 & 1.664 & 98.336 \\
+nihss\_arrival\_loc\_commands & 168,347 & 2,610 & 1.550 & 98.450 \\
+nihss\_arrival\_best\_gaze & 168,347 & 3,258 & 1.935 & 98.065 \\
+nihss\_arrival\_visual & 168,347 & 4,264 & 2.533 & 97.467 \\
+nihss\_arrival\_facial\_palsy & 168,347 & 2,645 & 1.571 & 98.429 \\
+nihss\_arrival\_motor\_arm\_left & 168,347 & 2,612 & 1.552 & 98.448 \\
+nihss\_arrival\_motor\_arm\_right & 168,347 & 2,615 & 1.553 & 98.447 \\
+nihss\_arrival\_motor\_leg\_left & 168,347 & 2,748 & 1.632 & 98.368 \\
+nihss\_arrival\_motor\_leg\_right & 168,347 & 2,769 & 1.645 & 98.355 \\
+nihss\_arrival\_limb\_ataxia & 168,347 & 4,723 & 2.806 & 97.194 \\
+nihss\_arrival\_sensory & 168,347 & 4,119 & 2.447 & 97.553 \\
+nihss\_arrival\_best\_language & 168,347 & 2,775 & 1.648 & 98.352 \\
+nihss\_arrival\_dysarthria & 168,347 & 3,295 & 1.957 & 98.043 \\
+nihss\_arrival\_extinction\_inattention & 168,347 & 3,403 & 2.021 & 97.979 \\
+discharge\_disability & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_not\_available & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_out\_of\_hours & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_scan\_not\_quick\_enough & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_no\_reason & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_haemorrhagic & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_time\_window & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_comorbidity & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_medication & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_refusal & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_age & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_improving & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_too\_mild\_severe & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_time\_unknown\_wake\_up & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_other\_medical & 168,347 & 0 & 0.000 & 100.000 \\
+onset\_to\_thrombolysis\_time & 168,347 & 0 & 0.000 & 100.000 \\
+stroke\_team\_id & 168,347 & 0 & 0.000 & 100.000 \\
+\label{tab:missing_all}
+\end{longtable}
+
+
+
+\begin{longtable}{lrrrr}
+\caption{Data Summary: Missing Values by Variable} \label{tab:data_summary} \\
+\toprule
+\textbf{Variable} & \textbf{Total Patients} & \textbf{Missing Values} & \textbf{Missing (\%)} & \textbf{Complete (\%)} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{\tablename\ \thetable{} -- \textit{continued from previous page}} \\
+\toprule
+\textbf{Variable} & \textbf{Total Patients} & \textbf{Missing Values} & \textbf{Missing (\%)} & \textbf{Complete (\%)} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+id & 168,347 & 0 & 0.000 & 100.000 \\
+stroke\_team & 168,347 & 0 & 0.000 & 100.000 \\
+age & 168,347 & 0 & 0.000 & 100.000 \\
+male & 168,347 & 0 & 0.000 & 100.000 \\
+onset\_to\_arrival\_time & 168,347 & 0 & 0.000 & 100.000 \\
+precise\_onset\_known & 168,347 & 0 & 0.000 & 100.000 \\
+onset\_during\_sleep & 168,347 & 0 & 0.000 & 100.000 \\
+month & 168,347 & 0 & 0.000 & 100.000 \\
+year & 168,347 & 0 & 0.000 & 100.000 \\
+weekday & 168,347 & 0 & 0.000 & 100.000 \\
+arrival\_time\_3\_hour\_period & 168,347 & 0 & 0.000 & 100.000 \\
+arrival\_to\_scan\_time & 168,347 & 0 & 0.000 & 100.000 \\
+scan\_to\_thrombolysis\_time & 168,347 & 0 & 0.000 & 100.000 \\
+congestive\_heart\_failure & 168,347 & 0 & 0.000 & 100.000 \\
+hypertension & 168,347 & 0 & 0.000 & 100.000 \\
+atrial\_fibrillation & 168,347 & 0 & 0.000 & 100.000 \\
+diabetes & 168,347 & 0 & 0.000 & 100.000 \\
+prior\_stroke\_tia & 168,347 & 0 & 0.000 & 100.000 \\
+afib\_antiplatelet & 168,347 & 0 & 0.000 & 100.000 \\
+afib\_anticoagulant & 168,347 & 0 & 0.000 & 100.000 \\
+new\_afib\_diagnosis & 168,347 & 0 & 0.000 & 100.000 \\
+any\_afib\_diagnosis & 168,347 & 0 & 0.000 & 100.000 \\
+prior\_disability & 168,347 & 0 & 0.000 & 100.000 \\
+stroke\_severity & 168,347 & 0 & 0.000 & 100.000 \\
+nihss\_complete & 168,347 & 0 & 0.000 & 100.000 \\
+nihss\_arrival\_loc & 168,347 & 0 & 0.000 & 100.000 \\
+nihss\_arrival\_loc\_questions & 168,347 & 2,802 & 1.664 & 98.336 \\
+nihss\_arrival\_loc\_commands & 168,347 & 2,610 & 1.550 & 98.450 \\
+nihss\_arrival\_best\_gaze & 168,347 & 3,258 & 1.935 & 98.065 \\
+nihss\_arrival\_visual & 168,347 & 4,264 & 2.533 & 97.467 \\
+nihss\_arrival\_facial\_palsy & 168,347 & 2,645 & 1.571 & 98.429 \\
+nihss\_arrival\_motor\_arm\_left & 168,347 & 2,612 & 1.552 & 98.448 \\
+nihss\_arrival\_motor\_arm\_right & 168,347 & 2,615 & 1.553 & 98.447 \\
+nihss\_arrival\_motor\_leg\_left & 168,347 & 2,748 & 1.632 & 98.368 \\
+nihss\_arrival\_motor\_leg\_right & 168,347 & 2,769 & 1.645 & 98.355 \\
+nihss\_arrival\_limb\_ataxia & 168,347 & 4,723 & 2.806 & 97.194 \\
+nihss\_arrival\_sensory & 168,347 & 4,119 & 2.447 & 97.553 \\
+nihss\_arrival\_best\_language & 168,347 & 2,775 & 1.648 & 98.352 \\
+nihss\_arrival\_dysarthria & 168,347 & 3,295 & 1.957 & 98.043 \\
+nihss\_arrival\_extinction\_inattention & 168,347 & 3,403 & 2.021 & 97.979 \\
+discharge\_disability & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_not\_available & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_out\_of\_hours & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_scan\_not\_quick\_enough & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_no\_reason & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_haemorrhagic & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_time\_window & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_comorbidity & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_medication & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_refusal & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_age & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_improving & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_too\_mild\_severe & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_time\_unknown\_wake\_up & 168,347 & 0 & 0.000 & 100.000 \\
+thrombolysis\_no\_but\_other\_medical & 168,347 & 0 & 0.000 & 100.000 \\
+onset\_to\_thrombolysis\_time & 168,347 & 0 & 0.000 & 100.000 \\
+stroke\_team\_id & 168,347 & 0 & 0.000 & 100.000 \\
+\label{tab:missing_ml}
+\end{longtable}
+
+
 
 \section{Descriptive statistics by stroke team}
 
