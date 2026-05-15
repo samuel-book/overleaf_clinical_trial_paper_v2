@@ -281,7 +281,88 @@ stroke\_team\_id & 168,347 & 0 & 0.000 & 100.000 \\
 \label{tab:missing_ml}
 \end{longtable}
 
+\subsection{Data cleaning}
 
+\subsubsection{Ambulance times}
+
+Ambulance times a renot used in the machine learning model.
+
+Of 360,381 records, 108,499 had some ambulance times data. Where data was incomplete or suspected to be in error, all ambulance times were set to 'not recorded'. This applied to:
+
+\begin{itemize}
+    \item 15,529 records had incomplete ambulance time data
+    \item 6,609 records had negative time periods
+    \item 285 records had ambulance times, other wait time at hospital, of zero
+    \item 9 records had ambulance times, but were not recorded in SSNAP as arriving by ambulance
+    \item 12 records had a time from call to ambulance arrival of more than 24 hours
+    \item 3 records had an on-scene time of more than 12 hours
+    \item 21 records had a travel time to hospital of more than 6 hours
+    \item 61 records had a wait time at hospital of more than 12 hours 
+\end{itemize}
+
+After cleaning, 85,701 records had complete and \textit{reasonable} ambulance data.
+
+\subsection{Hospital data cleaning}
+
+The following records were modified:
+
+\begin{itemize}
+    \item 61 records had negative onset-to-arrival times; there were set to unknown
+    \item 1 record had inconsistent anti-coagulant data (anti-coagulation was recorded as 'no' but a particular subtype of anticoagulant was recorded). This was set to anticoagulation 'not recorded'.
+    \item 10 records had inconsistent death data (where death is recorded in multiple fields) - in this case death in all fields was set as 'not recorded'.
+    \item 1388 records had missing stroke type; these records were removed.
+\end{itemize}
+
+\subsection{Cleaned data}
+
+Of 360,381 records, 358,993 remained after cleaning. 23,989 records (0.67\% of original data) had partial data set to 'unknown' due to incompleteness, inconsistency, or suspected inaccuracies.
+
+168,347 records were for patients who arrived at hospital by ambulance within 4 hours of known stroke onset time. These were used for the machine learning study on outcomes.
+
+\newpage
+
+\section{Change in mRS between discharge and 6 month follow-up}
+
+Of 357,805 patients with a recorded mRS at discharge, 109,723 (30.7\%) had a six month follow up. Though there is likely non-random selection of who is followed up at 6 months thrombolysis rates are similar between those with and without follow-up (11.7\% \textit{c.f.} 11.3\%).
+
+Table \ref{tab:mrs_change} shows that \textit{on average}, mRS at 6 months is very close to mRS at discharge (0.12 higher), but there is variability between patients, and the average absolute change in mRS is 1.1.
+
+\begin{table}[ht]
+\centering
+\caption{Modified Rankin Scale (mRS) chanage between discharge and 6 month follow-up}
+\label{tab:mrs_summary}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Measure} & \textbf{Mean} & \textbf{Std} \\
+\midrule
+mRS before stroke                          & 0.867 & 1.252 \\
+mRS at discharge                           & 2.061 & 1.427 \\
+mRS at 6 month follow-up                   & 2.177 & 1.807 \\
+Change from discharge to 6 months         & 0.116 & 1.525 \\
+Absolute change from discharge to 6 months & 1.095 & 1.067 \\
+\bottomrule
+\end{tabular}
+\label{tab:mrs_change}
+\end{table}
+
+Figure \ref{fig:mrs_change_hist} shows a histogram of changes across the population. 31\% had no change between discharge and 6 month follow-up, 73\% had no change or a change of 1 mRS band, and 27\% had a change of two or more mRS bands. \ref{fig:mrs_change} shows a box-plot of changes in mRS stratified by mRS at discharge. Those discharged with no disability (mRS 0) are more likely to worsen over 6 months (they cannot improve from mRS 0). Those discharged with mRS 3 are more likely to improve (have a lower mRS at 6 months), though those with higher discharge disability of mRS 4 or 5 will on average stay the same or worsen.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{images/mrs_change_from_discharge_histogram.png}
+    \caption{Change in mRS from Discharge to 6 Month Follow-up by Discharge mRS}
+    \label{fig:mrs_change_hist}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{images/mrs_change_from_discharge.png}
+    \caption{Change in mRS from Discharge to 6 Month Follow-up by Discharge mRS}
+    \label{fig:mrs_change}
+\end{figure}
+
+
+\newpage
 
 \section{Descriptive statistics by stroke team}
 
@@ -394,6 +475,7 @@ Proportion discharged mRS 5-6 & 119 & 0.254 & 0.051 & 0.147 & 0.221 & 0.253 & 0.
 \normalsize
 
 \clearpage
+\newpage
 
 \section{Feature selection}
 
@@ -496,6 +578,7 @@ Tables \ref{tab:table_accuracy_feature_selection} and \ref{tab:table_rocauc_feat
 \end{table}
 
 \clearpage
+\newpage
 
 \section{Receiver Operating Characteristic and Sensitivity/Specificity curves }
 

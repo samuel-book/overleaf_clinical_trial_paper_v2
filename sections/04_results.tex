@@ -2,12 +2,12 @@
 
 \subsection{Descriptive statistics}
 
-168,347 patients (with onset-to-scan of within 255 minutes) attended 118 hospitals with total stroke admissions per hospital ranging from 358 to 4,559, and with hospital thrombolysis rates ranging from 5.9\% to 39.2\%. Of the 133,516 patients who did not receive thrombolysis, their range of disability at discharge was: 12\% mRS 0, 33\% mRS 0-1, 52\% mRS 0-2, 69\% mRS 0-3, 82\% mRS 0-4, and 88\% mRS 0-5 at discharge. Of the 34,831 patients who received thrombolysis, their range of disability at discharge was: 15\% mRS 0, 35\% mRS 0-1, 54\% mRS 0-2, 69\% mRS 0-3, 81\% mRS 0-4, and 86\% mRS 0-5. Table \ref{tab:descriptive_stats} shows further descriptive statistics for patients who received or did not receive thrombolysis. Further descriptive statistics are provided in the Supplemental Material.
+168,347 patients (with onset-to-scan of within 255 minutes) attended 118 hospitals with total stroke admissions per hospital ranging from 358 to 4,559, and with hospital thrombolysis rates ranging from 5.9\% to 39.2\%. Of the 133,516 patients who did not receive thrombolysis, their range of disability at discharge was: 12\% mRS 0, 33\% mRS 0-1, 52\% mRS 0-2, 69\% mRS 0-3, 82\% mRS 0-4, and 88\% mRS 0-5 at discharge. Of the 34,831 patients who received thrombolysis, their range of disability at discharge was: 15\% mRS 0, 35\% mRS 0-1, 54\% mRS 0-2, 69\% mRS 0-3, 81\% mRS 0-4, and 86\% mRS 0-5. Table \ref{tab:descriptive_stats} shows further descriptive statistics for patients who received or did not receive thrombolysis. 30.7\% had six month follow-up assessment of mRS. On average mRS at 6 months is very close to mRS at discharge (0.12 higher), but there was variation at individual patient level: 31\% had no change between discharge and 6 month follow-up, 73\% had no change or a change of 1 mRS band, and 27\% had a change of two or more mRS bands. Further descriptive statistics are provided in the Supplemental Material.
 
 \begin{minipage}{1\textwidth}
 \small
 \begin{longtable}[]{@{}l | lll | lll @{}}
-\caption{Descriptive statistics for patients receving or not receiving thrombolysis.}\\
+\caption{Descriptive statistics for patients receiving or not receiving thrombolysis.}\\
 \toprule\noalign{}
 & \multicolumn{3}{c|}{Thrombolysis given} & \multicolumn{3}{c}{Thrombolysis not given} \\ 
 %\midrule\noalign{}
@@ -33,13 +33,11 @@ Hypertension & 41163 & 0.51 (NA) & NA & 315941 & 0.55 (NA) & NA \\
 Atrial fibrillation (Afib) & 41163 & 0.12 (NA) & NA & 315941 & 0.19 (NA) & NA \\
 New afib diagnosis & 24485 & 0.11 (NA) & NA & 172727 & 0.06 (NA) & NA \\
 Diabetes & 41163 & 0.17 (NA) & NA & 315941 & 0.22 (NA) & NA \\
-Prior stroke tia & 41163 & 0.20 (NA) & NA & 315941 & 0.26 (NA) & NA \\
+Prior stroke or TIA & 41163 & 0.20 (NA) & NA & 315941 & 0.26 (NA) & NA \\
 Afib antiplatelet & 41163 & 0.03 (NA) & NA & 315940 & 0.03 (NA) & NA \\
 Afib anticoagulant & 30128 & 0.04 (NA) & NA & 237923 & 0.19 (NA) & NA \\
 Afib vit k anticoagulant & 41163 & 0.01 (NA) & NA & 315940 & 0.03 (NA) & NA \\
 Afib DOAC anticoagulant & 41163 & 0.01 (NA) & NA & 315940 & 0.08 (NA) & NA \\
-Afib heparin anticoagulant & 41163 & 0.00 (NA) & NA & 315940 & 0.00 (NA) & NA \\
-Thrombolysis & 41163 & 1.00 (NA) & NA & 315941 & 0.00 (NA) & NA \\
 Scan to thrombolysis time & 41163 & 37 (29) & 31 (19-47) & NA & NA & NA \\
 Thrombectomy & 41163 & 0.06 (NA) & NA & 315941 & 0.01 (NA) & NA \\
 Arrival to thrombectomy time & 2591 & 201 (179) & 171 (114-233) & 1752 & 249 (278) & 172 (104-269) \\
@@ -47,14 +45,14 @@ Arrival to thrombectomy time & 2591 & 201 (179) & 171 (114-233) & 1752 & 249 (27
 \end{longtable}
 \end{minipage}
 
-\subsection{Feature selection and proposed causal model}
+\subsection{Feature selection and proposed model}
 
-Features affecting choice of thrombolysis have previously been described \cite{pearn_are_2024}. Details of feature selection for outcome prediction are detailed in the supplementary material. Based also on the selection of characteristics for the prediction of the outcome, we developed figure \ref{fig:dag} as a causal diagram of the factors that affect the use of thrombolysis and the factors that directly affect the outcome. This proposed causal model is based on features identified as affecting outcome or propensity to use thrombolysis, correlations present in the data, known temporal relationships in the data, and clinical review. 
+Features affecting choice of thrombolysis have previously been described \cite{pearn_are_2024}. Details of feature selection for outcome prediction are detailed in the supplementary material. Based also on the selection of characteristics for the prediction of the outcome, we developed figure \ref{fig:dag} as a as a proposed schematic of the factors that affect the use of thrombolysis and the factors that directly affect the outcome. This proposed causal model is based on features identified as affecting outcome or propensity to use thrombolysis, correlations present in the data, known temporal relationships in the data, and clinical review. 
 
 \begin{figure}[!h]
     \centering%\captionsetup{width=.8\linewidth}%
       \includegraphics[width=0.95\linewidth]{./images_main/fig_1_thrombolysis_dag.png}\\
-  \caption{A Directed Acyclic Graph (`DAG') showing the proposed causal relationships in propensity to use thrombolysis and outcome after stroke with or without thrombolysis.}
+  \caption{A Directed Acyclic Graph (`DAG') showing the proposed relationships in propensity to use thrombolysis and outcome after stroke with or without thrombolysis.}
     \label{fig:dag}
 \end{figure}
 
@@ -79,7 +77,7 @@ With these seven input features, the overall accuracy ranged from 77. 6\% to 89.
 
 \subsection{SHAP patterns}
 
-SHAP values were calculated for each feature for each patient, showing how each value affects the log odds of achieving a good outcome at discharge. For each patient in the test set we extracted SHAP values for each feature with its corresponding feature value. Figure \ref{fig:shap}a shows the relationship between feature values and the odds of a patient having an excellent outcome (mRS 0-1) at discharge (a positive SHAP value contributes to an increased likelihood, and a negative SHAP value contributes to a reduced likelihood). We found that low prior disability, lower stroke severity, younger age, receiving thrombolysis (and receiving it sooner after onset), and having no diagnosis of atrial fibrillation contributed to a patient more likely having an excellent outcome at discharge. Figure \ref{fig:shap}b focusses on the feature \textit{onset to thrombolysis time}, and its effect on reaching any disability threshold. As time from onset to treatment increased, the beneficial effect of thrombolysis decayed. For thresholds up to, and including, mRS 3, the median effect of thrombolysis remained positive, compared to not receiving thrombolysis, up until the maximum time of 720 minutes. For thresholds of mRS 4 and upwards, the median effect of thrombolysis became negative at longer onset-to-treatment times. This was especially apparent in how thrombolysis changed the overall odds of survival (mRS 0-5) where the median effect of thrombolysis became negative from about 155 minutes. Later thrombolysis may therefore increase the proportion of patients attaining mRS 0-3, but at the cost of some reduction in overall survival. Earlier thrombolysis improved the odds of survival. Figure \ref{fig:shap}c shows the contribution from attending a specific hospital to predicting whether the patient had a good outcome at discharge, for each of the mRS threshold levels used to define a good outcome. As the threshold for having a good outcome becomes more inclusive of higher disability levels, the effect of the hospital attended had a reduced contribution. In other words, the hospital attended made a greater contribution to variation in outcome with thrombolysis for patients with lesser degrees of disability after treatment.
+SHAP values were calculated for each feature for each patient, showing how each value affects the log odds of achieving any particular mRS threshold at discharge. For each patient in the test set we extracted SHAP values for each feature with its corresponding feature value. Figure \ref{fig:shap}a shows the relationship between feature values and the odds of a patient having an excellent outcome (mRS 0-1) at discharge (a positive SHAP value contributes to an increased likelihood, and a negative SHAP value contributes to a reduced likelihood). We found that low prior disability, lower stroke severity, younger age, receiving thrombolysis (and receiving it sooner after onset), and having no diagnosis of atrial fibrillation contributed to a patient more likely having an excellent outcome at discharge. Figure \ref{fig:shap}b focusses on the feature \textit{onset to thrombolysis time}, and its effect on reaching any disability threshold. As time from onset to thrombolysis increased, the beneficial effect of thrombolysis decayed. For thresholds up to, and including, mRS 3, the median effect of thrombolysis remained positive, compared to not receiving thrombolysis, up until the maximum time of 720 minutes. For thresholds of mRS 4 and upwards, the median effect of thrombolysis became negative at longer onset-to-thrombolysis times. This was especially apparent in how thrombolysis changed the overall odds of survival (mRS 0-5) where the median effect of thrombolysis became negative from about 155 minutes. Later thrombolysis may therefore increase the proportion of patients attaining mRS 0-3, but at the cost of some reduction in overall survival. Earlier thrombolysis improved the odds of survival. Figure \ref{fig:shap}c shows the contribution from attending a specific hospital to predicting whether the patient achieved each mRS threshold at discharge. As the mRS threshold becomes more inclusive of higher disability levels, the effect of the hospital attended had a reduced contribution. In other words, the hospital attended made a greater contribution to variation in outcome with thrombolysis for patients with lesser degrees of disability after treatment.
 
 
 %%%%%%%% PUT ON SEPARATE A4 PAGE LANDSCAPE %%%%%%%%%%%
@@ -89,26 +87,26 @@ SHAP values were calculated for each feature for each patient, showing how each 
 %\begin{sidewaysfigure}[!ht]
 \begin{figure}[!ht]
   \includegraphics[width=1.0\textwidth]{./images_main/fig_2_shap}\\
-  \caption{The relationship between feature values and SHAP values in predicting whether a patient will have a good outcome at discharge, for each of the mRS scores used to define a good outcome. Violin plots show the distribution of SHAP values across the patient population for each feature value, with the mid-line showing the median SHAP value.}
+  \caption{The relationship between feature values and SHAP values in predicting whether a patient is discharged at each mRS threshold. Violin plots show the distribution of SHAP values across the patient population for each feature value, with the mid-line showing the median SHAP value.}
   \label{fig:shap}
 \end{figure}
 
 
 \subsection{Counterfactuals - what if patients had not received thrombolysis?}
 
-Using the counterfactual results for all of the patients in the first k-fold test set that received thrombolysis within 300 minutes from stroke onset (n = 6,796), table \ref{tab:stats_table_mrs1} shows a linear regression fitted to the shift in the contribution of thrombolysis towards having an excellent outcome at discharge (mRS 0-1) with respect to the onset to thrombolysis time. We found, for all treated patients, that the effect of thrombolysis had declined to zero at 328 minutes, and the effect from thrombolysis was improving log odds of a good outcome by 0.90 if it were, theoretically, given at the time of stroke onset. We observed that the maximum theoretical effect of thrombolysis (if given at time of stroke onset) was greater for the severe stroke group (1.048 log odds) than the mild-moderate stroke group (0.771 log odds). However the effect of thrombolysis declined more rapidly in the severe stroke group, reaching no effect at 314 minutes for severe stroke patients, compared to 351 minutes for mild-moderate stroke patients. 
+Using the counterfactual results for all of the patients in the first k-fold test set that received thrombolysis within 300 minutes from stroke onset (n = 6,796), table \ref{tab:stats_table_mrs1} shows a linear regression fitted to the shift in the contribution of thrombolysis towards having an excellent outcome at discharge (mRS 0-1) with respect to the onset to thrombolysis time. We found, for all treated patients, that the effect of thrombolysis had declined to zero at 328 minutes, and the effect from thrombolysis was improving log odds of being discharged mRS 0-1 by 0.90 if it were, theoretically, given at the time of stroke onset. We observed that the maximum theoretical effect of thrombolysis (if given at time of stroke onset) was greater for the severe stroke group (1.048 log odds) than the mild-moderate stroke group (0.771 log odds). However the effect of thrombolysis declined more rapidly in the severe stroke group, reaching no effect at 314 minutes for severe stroke patients, compared to 351 minutes for mild-moderate stroke patients. 
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\textwidth]{./images_main/fig_3_linear_reg}\\
-    \caption{Linear regression of thrombolysis contribution to excellent outcome (mRS 0–1) at discharge as a function of onset-to-treatment time (OTT) in patients treated within 300 minutes. Left: all treated stroke patients (n = 6,796); Middle: severe stroke patients (NIHSS 11+; n = 2,856); Right: mild-moderate stroke patients (NIHSS 0–10; n = 3,940).}
+    \caption{Linear regression of thrombolysis contribution to excellent outcome (mRS 0–1) at discharge as a function of onset-to-thrombolysis time (OTT) in patients treated within 300 minutes. Left: all treated stroke patients (n = 6,796); Middle: severe stroke patients (NIHSS 11+; n = 2,856); Right: mild-moderate stroke patients (NIHSS 0–10; n = 3,940).}
     \label{fig:linear_regression_plots}
 \end{figure}
 
 
 
 \begin{table}[!ht]
-    \caption{Linear regression of the relationship between onset-to-treatment time (OTT) and the improvement in log-odds of achieving an excellent outcome (mRS 0-1), stratified by stroke severity.}
+    \caption{Linear regression of the relationship between onset-to-thrombolysis time (OTT) and the improvement in log-odds of achieving an excellent outcome (mRS 0-1), stratified by stroke severity.}
     \centering
     \begin{tabular}{lllllllll}
     \toprule
