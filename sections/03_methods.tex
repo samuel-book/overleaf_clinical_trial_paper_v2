@@ -6,7 +6,7 @@ Data were retrieved for 168,347 emergency ischaemic stroke admissions to hospita
 
 \subsection{Machine learning models}
 
-We trained a set of six independent XGBoost models \cite{chen_xgboost_2016} to predict the likelihood of an ischaemic stroke patient attaining any given mRS threshold at discharge (where achieving a lower threshold is better). The model of mRS $\le$ 5 also provides a model of survival vs. death. The model of mRS $\le$ also provides a model of death vs. survival. The results from the test set for the model fitted on the first k-fold split was used to report the relationships between feature values and their contribution to the predictions.
+We trained a set of six independent XGBoost models \cite{chen_xgboost_2016} to predict the likelihood of an ischaemic stroke patient attaining any given mRS threshold at discharge (where achieving a lower threshold is better). The model of mRS $\le$ 5 also provides a model of survival vs. death. The results from the test set for the model fitted on the first k-fold split was used to report the relationships between feature values and their contribution to the predictions.
 
 Code, and full results, for the machine learning work may be found at \url{https://github.com/samuel-book/thrombolysis_clinical_trials_ml_paper}. Further details of method development may be found in the supplementary material.
 
